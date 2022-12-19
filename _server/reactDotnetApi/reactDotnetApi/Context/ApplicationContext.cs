@@ -11,6 +11,5 @@ namespace reactDotnetApi.Context
         }
 
         public DbSet<Keyword> keywords { get; set; }
-        public DbSet<Test> test { get; set; }
     };
 }

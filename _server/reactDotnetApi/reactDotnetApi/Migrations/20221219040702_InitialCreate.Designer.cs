@@ -12,7 +12,7 @@ using reactDotnetApi.Context;
 namespace reactDotnetApi.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20221219014929_InitialCreate")]
+    [Migration("20221219040702_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
