@@ -4,7 +4,7 @@ export const BASE_URL = 'https://localhost:7058';
 
 export const ENDPOINTS = {
     weatherforecast: 'WeatherForecast',
-    keywords: 'keywords'
+    keyword: 'keyword'
 }
 
 export const createApiEndpoint = (endpoint) => {

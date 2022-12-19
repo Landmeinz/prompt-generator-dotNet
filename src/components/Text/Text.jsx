@@ -6,6 +6,7 @@ function Text() {
   const [prompt, setPrompt] = useState("");
   const [disableSelect, setDisableSelect] = useState({});
   const [data, setData] = useState([]);
+  const [keywords, setKeywords] = useState([]);
   const Themes = ["one", "five", "three"];
 
   // let's sort our categories first //
@@ -15,23 +16,25 @@ function Text() {
   useEffect(() => {
     // fetchData();
     fetchData();
+    fetchKeywords();
   }, []);
 
-  // function fetchData() {
-  //   let response = createApiEndpoint(ENDPOINTS.weatherforecast)
-  //     .fetch()
-  //     .then((response) => console.log(response))
-  //     .catch((error) => console.log(error));
-
-  //   let responseData = response.json;
-  //   setData(responseData);
-  // }
-
-  async function fetchData() {
+  function fetchData() {
     try {
       const response = createApiEndpoint(ENDPOINTS.weatherforecast)
         .fetch()
         .then((response) => setData(response.data));
+      return response;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  function fetchKeywords() {
+    try {
+      const response = createApiEndpoint(ENDPOINTS.keyword)
+        .fetch()
+        .then((response) => setKeywords(response.data));
       return response;
     } catch (err) {
       console.log(err);
@@ -81,7 +84,11 @@ function Text() {
       )}
 
       {data?.map((item, k) => (
-       <h1 key={k}>{item.summary}</h1>
+        <h1 key={k}>{item.summary}</h1>
+      ))}
+
+      {keywords?.map((thing, l) => (
+        <h2 key={l}>{thing.keyword}</h2>
       ))}
     </div>
   );
