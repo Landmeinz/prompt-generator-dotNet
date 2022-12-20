@@ -10,6 +10,11 @@ namespace reactDotnetApi.Context
         {
         }
 
-        public DbSet<Keyword> keywords { get; set; }
-    };
+        public DbSet<Keyword> Keywords { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Keyword>();
+        }
+    }
 }

@@ -2,24 +2,27 @@
 using reactDotnetApi.Context;
 
 var builder = WebApplication.CreateBuilder(args);
+string[] allowedCorsOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>();
 
-// Add services to the container.
-
+// Add DB services to the container //
 builder.Services.AddDbContext<ApplicationContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddControllers().AddJsonOptions(options => options.JsonSerializerOptions.PropertyNameCaseInsensitive = true);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddCors(option => option
+.AddDefaultPolicy(policy => policy
+    .WithOrigins(allowedCorsOrigins)
+    .AllowAnyHeader()
+    .AllowAnyMethod()));
+
+// Add local services to the container //
+//builder.Services.AddSingleton<IDisImageService, DisImageService>();
+//builder.Services.AddScoped<IDisIntegrationService, DisIntegrationService>();
 
 var app = builder.Build();
-
-app.UseCors(option =>
-option.WithOrigins("http://localhost:3000")
-.AllowAnyMethod()
-.AllowAnyHeader());
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -29,4 +32,5 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
+app.UseCors();
 app.Run();

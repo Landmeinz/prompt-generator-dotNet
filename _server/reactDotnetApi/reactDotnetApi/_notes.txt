@@ -1,0 +1,8 @@
+﻿
+connect DB
+
+run: dotnet ef migrations add InitialCreate
+
+run: dotnet ef database update
+
+remove migrations folder if you want to start new

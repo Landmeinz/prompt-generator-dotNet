@@ -11,7 +11,7 @@ namespace reactDotnetApi.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "keywords",
+                name: "Keywords",
                 columns: table => new
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
@@ -25,31 +25,14 @@ namespace reactDotnetApi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_keywords", x => x.id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "test",
-                columns: table => new
-                {
-                    id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    name = table.Column<string>(type: "text", nullable: true),
-                    details = table.Column<string>(type: "text", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_test", x => x.id);
+                    table.PrimaryKey("PK_Keywords", x => x.id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "keywords");
-
-            migrationBuilder.DropTable(
-                name: "test");
+                name: "Keywords");
         }
     }
 }

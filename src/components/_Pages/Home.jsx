@@ -8,13 +8,13 @@ function Home() {
   const [keywords, setKeywords] = useState([]);
 
   // let's sort our categories first //
-
   useEffect(() => {
     // fetchData();
     fetchKeywords();
+    setPrompt("hello");
   }, []);
 
-  function fetchKeywords() {
+  async function fetchKeywords() {
     try {
       const response = createApiEndpoint(ENDPOINTS.keyword)
         .fetch()
@@ -25,9 +25,23 @@ function Home() {
     }
   }
 
-  function handleClick() {
+  async function getRandomKeyword(){
+    let count = keywords.length;
+    let randomCount = Math.floor(Math.random() * count);
+    console.log("number", randomCount);
+    return keywords[randomCount];
+  }
+
+  async function handleClick() {
     console.log("clicked on randomTheme");
-    setPrompt(keywords[Math.floor(Math.random() * keywords.length)]);
+    setPrompt("yeas");
+    // let currentKeywords = fetchKeywords();
+    let currentKeywords = keywords;
+    console.log("--- currentKeywords", currentKeywords);
+    // setPrompt(currentKeywords[Math.floor(Math.random() * currentKeywords.length)]);
+    let promptSet = await getRandomKeyword().keyword;
+    console.log('promptSet', promptSet);
+    setPrompt(promptSet);
   }
 
   function handleDisableSelect() {
@@ -53,7 +67,7 @@ function Home() {
           <h2>{thing.keyword}</h2>
           <p>{thing.category}</p>
           <p>{thing.subCategory}</p>
-          <p>{thing.subCategoryType}</p>
+          <p>{thing.subCategoryType ? thing.subCategoryType : "n/a" }</p>
           <p>{thing.lastPing}</p>
         </div>
       ))}

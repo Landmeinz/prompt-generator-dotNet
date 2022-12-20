@@ -34,18 +34,18 @@ function App() {
     <ThemeProvider theme={theme}>
       <Box id="sxApp" sx={sxApp}>
         <Helmet>
-          <title>Tinker Together</title>
+          <title>Prompt Generator</title>
           <meta
             name="description"
-            content="general information and mission statement of the tinker.group along with a gallery of work."
+            content="text prompt generator for midjourney, a.i. art."
           />
           <meta
             name="keywords"
-            content="tinker together, tinker.group, welcome"
+            content="midjourney, themes, art, prompt, creative prompts, generate, welcome"
           />
           <meta
             name="author"
-            content="tinker.group, Eric Meinzer, Chris Benner, Adam Donner"
+            content="Eric Meinzer, landmeinz, zer made, tinker group"
           />
         </Helmet>
 

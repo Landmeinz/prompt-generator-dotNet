@@ -13,10 +13,10 @@ function Footer() {
       <Helmet>
         <meta
           name="description"
-          content="Tinker Group 2022 located in Minneapolis, Minnesota MPLS, MN"
+          content="Prompt Generator designed and created by Eric Meinzer from Minneapolis, Minnesota. MPLS, MN"
         />
       </Helmet>
-      <Typography variant="body2">Tinker Often 2022</Typography>
+      <Typography variant="body2">Generate Often 2023</Typography>
     </Box>
   );
 }

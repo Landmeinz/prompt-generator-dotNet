@@ -21,7 +21,7 @@ public class KeywordController : ControllerBase
     [HttpGet(Name = "ListKeywords")]
     public IEnumerable<Keyword> List()
     {
-        return _dbContext.keywords.ToList();
+        return _dbContext.Keywords.ToList();
     }
 }
 

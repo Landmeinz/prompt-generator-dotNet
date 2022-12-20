@@ -12,7 +12,7 @@ using reactDotnetApi.Context;
 namespace reactDotnetApi.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20221219040702_InitialCreate")]
+    [Migration("20221219235450_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -52,26 +52,7 @@ namespace reactDotnetApi.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("keywords");
-                });
-
-            modelBuilder.Entity("reactDotnetApi.Models.Test", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
-
-                    b.Property<string>("details")
-                        .HasColumnType("text");
-
-                    b.Property<string>("name")
-                        .HasColumnType("text");
-
-                    b.HasKey("id");
-
-                    b.ToTable("test");
+                    b.ToTable("Keywords");
                 });
 #pragma warning restore 612, 618
         }

@@ -34,7 +34,7 @@ function Nav() {
           variant="h4"
           onClick={() => handleNav("/home")}
         >
-          Home
+          Prompt Generator
         </Typography>
       </Box>
 
