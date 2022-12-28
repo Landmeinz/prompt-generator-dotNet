@@ -4,14 +4,18 @@ export const BASE_URL = 'https://localhost:7058';
 
 export const ENDPOINTS = {
     weatherforecast: 'WeatherForecast',
-    keyword: 'keyword'
+    category: 'category',
+    // subCategory: 'subCategory',
+    // subCategoryType: 'subCategoryType',
+    keyword: 'keyword',
 }
 
-export const createApiEndpoint = (endpoint) => {
+export const createApiEndpoint = (endpoint, payload) => {
     let url = `${BASE_URL}/api/${endpoint}`;
 
     return {
         fetch: () => axios.get(url),
+        post: () => axios.post(url, payload),
+
     }
 }
-

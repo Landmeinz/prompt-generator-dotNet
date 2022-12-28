@@ -19,9 +19,9 @@ import {
 // import ProductDetails from "../_Pages/ProductDetails"
 // import About from "../_Pages/About";
 import Nav from "../Nav/Nav";
-import Footer from "../Footer/Footer";
-// import Contact from "../_Pages/Contact";
 import Home from "../_Pages/Home.jsx";
+import Admin from "../_Pages/Admin.jsx";
+import Footer from "../Footer/Footer";
 
 // --- MUI --- //
 import { Box } from "@mui/material";
@@ -62,10 +62,8 @@ function App() {
                 <Nav />
                 <Routes>
                   <Route path="/" element={<Navigate to="/home" />} />
-                  <Route
-                    path="/home"
-                    element={<Home />}
-                  />
+                  <Route path="/home" element={<Home />} />
+                  <Route path="/admin" element={<Admin />} />
                 </Routes>
               </motion.div>
             </AnimatePresence>

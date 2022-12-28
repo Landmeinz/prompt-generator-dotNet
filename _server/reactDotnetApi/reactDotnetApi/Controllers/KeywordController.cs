@@ -19,9 +19,36 @@ public class KeywordController : ControllerBase
     }
 
     [HttpGet(Name = "ListKeywords")]
-    public IEnumerable<Keyword> List()
+    public IEnumerable<Keyword> ListKeywords()
     {
         return _dbContext.Keywords.ToList();
+    }
+
+    //[HttpGet(Name = "ListCategories")]
+    //public List<string> ListCategories()
+    //{
+    //    return _dbContext.Keywords.Select(kw => kw.category).ToList();
+    //}
+
+
+    [HttpPost(Name = "PostKeyword")]
+    public Keyword Create([FromBody] KeywordBody keywordBody)
+    {
+        var lastKeyword = _dbContext.Keywords.OrderBy(x => x.id).LastOrDefault();
+        Keyword newKeyword = new()
+        {
+            id = lastKeyword.id + 1,
+            keyword = keywordBody.keyword,
+            category = keywordBody.category,
+            subCategory = keywordBody.subCategory,
+            subCategoryType = keywordBody.subCategoryType,
+            lastPing = DateTime.UtcNow,
+            genPromptCount = 0
+
+        };
+        _dbContext.Keywords.Add(newKeyword);
+        _dbContext.SaveChanges();
+        return newKeyword;
     }
 }
 

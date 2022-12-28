@@ -98,41 +98,41 @@ export const sxBreaksH5 = {
 };
 
 export const sxBreaksH6 = {
-    [theme.breakpoints.down("xl")]: {
-      fontSize: "1.5rem",
-    },
-    [theme.breakpoints.down("lg")]: {
-      fontSize: "1.35rem",
-    },
-    [theme.breakpoints.down("md")]: {
-      fontSize: "1.25rem",
-    },
-    [theme.breakpoints.down("sm")]: {
-      fontSize: "1.15rem",
-    },
-  };
+  [theme.breakpoints.down("xl")]: {
+    fontSize: "1.5rem",
+  },
+  [theme.breakpoints.down("lg")]: {
+    fontSize: "1.35rem",
+  },
+  [theme.breakpoints.down("md")]: {
+    fontSize: "1.25rem",
+  },
+  [theme.breakpoints.down("sm")]: {
+    fontSize: "1.15rem",
+  },
+};
 
-  export const sxNavH6 = {
-    cursor: "pointer",
+export const sxNavH6 = {
+  cursor: "pointer",
 
-    "&:hover": {
-        color: "primary.light",
-        transform: "scale(1.05)",
-      },
+  "&:hover": {
+    color: "primary.light",
+    transform: "scale(1.05)",
+  },
 
-    [theme.breakpoints.down("xl")]: {
-        fontSize: "1.25rem",
-      },
-      [theme.breakpoints.down("lg")]: {
-        fontSize: "1.15rem",
-      },
-      [theme.breakpoints.down("md")]: {
-        fontSize: "1.05rem",
-      },
-      [theme.breakpoints.down("sm")]: {
-        fontSize: "1.05rem",
-      },
-  }
+  [theme.breakpoints.down("xl")]: {
+    fontSize: "1.25rem",
+  },
+  [theme.breakpoints.down("lg")]: {
+    fontSize: "1.15rem",
+  },
+  [theme.breakpoints.down("md")]: {
+    fontSize: "1.05rem",
+  },
+  [theme.breakpoints.down("sm")]: {
+    fontSize: "1.05rem",
+  },
+};
 // ----- App ----- //
 // ----- App ----- //
 // ----- App ----- //
@@ -145,7 +145,7 @@ export const sxNavContainer = {
   py: 2,
   px: 2,
   display: "flex",
-  justifyContent: "space-between",
+  justifyContent: "center",
   alignItems: "center",
   position: "sticky",
   top: 0,
@@ -154,58 +154,32 @@ export const sxNavContainer = {
   zIndex: 1000,
 };
 
-export const sxTinkerNavText = {
+export const sxNavText = {
   color: "secondary.main",
-  cursor: "pointer",
-  "&:hover": {
-    color: "primary.light",
-    transform: "scale(1.05)",
-  },
 };
 
 export const sxTinkerSubText = {
-    display: "flex",
-    justifyContent: "center",
-    gap: "2vh",
-    color: "secondary.main",
-  };
-// ----- Nav ----- //
-// ----- Nav ----- //
-// ----- Nav ----- //
-
-// ----- Shared On All Pages ----- //
-// ----- Shared On All Pages ----- //
-// ----- Shared On All Pages ----- //
-export const sxHeroTextContent = {
-  wordWrap: "break-word",
-};
-
-export const sxContactTitle = {
-    cursor: "pointer",
-
-    "&:hover": {
-        color: "secondary.main",
-        transform: "scale(1.02)",
-        transition: ".2s",
-      },
-}
-// ----- Shared On All Pages ----- //
-// ----- Shared On All Pages ----- //
-// ----- Shared On All Pages ----- //
-
-// ----- About ----- //
-// ----- About ----- //
-// ----- About ----- //
-export const sxAboutSectionOne = {
-  // border: '1px solid red',
   display: "flex",
-  flexDirection: "column",
-  // alignItems: 'center',`
   justifyContent: "center",
-  gap: 17,
-  mt: 12,
+  gap: "2vh",
+  color: "secondary.main",
 };
+// ----- Nav ----- //
+// ----- Nav ----- //
+// ----- Nav ----- //
 
+// ----- Shared On All Pages ----- //
+// ----- Shared On All Pages ----- //
+// ----- Shared On All Pages ----- //
+export const sxContactTitle = {
+  cursor: "pointer",
+
+  "&:hover": {
+    color: "secondary.main",
+    transform: "scale(1.02)",
+    transition: ".2s",
+  },
+};
 export const sxHeroText = {
   color: "primary.light",
   fontWeight: "bold", // normal, bold, light
@@ -224,9 +198,9 @@ export const sxHeroText = {
     fontSize: "4rem",
   },
 };
-// ----- About ----- //
-// ----- About ----- //
-// ----- About ----- //
+// ----- Shared On All Pages ----- //
+// ----- Shared On All Pages ----- //
+// ----- Shared On All Pages ----- //
 
 // ----- CardsAdditionalDetails ----- //
 // ----- CardsAdditionalDetails ----- //
@@ -304,7 +278,7 @@ export const sxCardDefineLeftContainer = {
 // ----- CardDefineRight --- //
 // ----- CardDefineRight --- //
 export const sxCardDefineRightContainer = {
-//   border: '1px solid red',
+  //   border: '1px solid red',
   display: "flex",
   flexDirection: "row",
   justifyContent: "center",
@@ -339,7 +313,7 @@ export const sxCardDefineRightContainer = {
 // ----- CardDefine SHARED --- //
 // ----- CardDefine SHARED --- //
 export const sxTinkerDefined = {
-//   border: '1px solid green',
+  //   border: '1px solid green',
   px: 5,
   py: 3,
   display: "flex",
@@ -349,15 +323,9 @@ export const sxTinkerDefined = {
   height: "inherit",
   bgcolor: "info.light",
 
-  [theme.breakpoints.down("xl")]: {
-
-  },
-  [theme.breakpoints.down("lg")]: {
-
-  },
-  [theme.breakpoints.down("md")]: {
-
-  },
+  [theme.breakpoints.down("xl")]: {},
+  [theme.breakpoints.down("lg")]: {},
+  [theme.breakpoints.down("md")]: {},
   [theme.breakpoints.down("sm")]: {
     borderRadius: 2.5,
   },
@@ -507,15 +475,15 @@ export const sxInputContainer = {
 };
 
 export const sxMessageButtonContainer = {
-    // border: "1px solid red",
-    display: "flex",
-    gap: 2,
-}
+  // border: "1px solid red",
+  display: "flex",
+  gap: 2,
+};
 
 export const sxPostButton = {
   bgcolor: "secondary.main",
   color: "primary.light",
-//   width: "35vw",
+  //   width: "35vw",
   height: "8vh",
   border: 1,
   lineHeight: 1.1,
@@ -567,20 +535,37 @@ export const sxMessageBoardHeader = {
 // ----- Contact --- //
 // ----- Contact --- //
 
-// ----- ContactButton --- //
-// ----- ContactButton --- //
-// ----- ContactButton --- //
-export const sxContactButtonContainer = {
+// ----- Footer ----- //
+// ----- Footer ----- //
+// ----- Footer ----- //
+export const sxFooterContainer = {
+  // border: '1px solid red',
+  height: "1.5rem",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  width: "100%",
+  bgcolor: "info.light",
+  color: "secondary.main",
+};
+// ----- Footer ----- //
+// ----- Footer ----- //
+// ----- Footer ----- //
+
+// ----- GenerateButton --- //
+// ----- GenerateButton --- //
+// ----- GenerateButton --- //
+export const sxGenerateButtonContainer = {
+  // border: "1px solid red",
   display: "flex",
   justifyContent: "center",
 };
 
-export const sxContactButton = {
+export const sxGenerateButton = {
   bgcolor: "secondary.main",
   color: "primary.light",
-  width: "40vw",
-  height: "8vh",
   border: 1,
+  borderRadius: "50%",
   borderColor: "info.light",
   fontWeight: "bold",
   transition: ".25s",
@@ -594,24 +579,57 @@ export const sxContactButton = {
 
   [theme.breakpoints.down("xl")]: {
     fontSize: "1.618rem",
-    width: "60vw",
+    width: "188px",
+    height: "188px",
   },
   [theme.breakpoints.down("lg")]: {
     fontSize: "1.25rem",
-    width: "60vw",
+    width: "168px",
+    height: "168px",
   },
   [theme.breakpoints.down("md")]: {
     fontSize: "1rem",
-    width: "75vw",
+    width: "138px",
+    height: "138px",
   },
   [theme.breakpoints.down("sm")]: {
     fontSize: "1rem",
-    width: "80vw",
+    width: "118px",
+    height: "118px",
   },
 };
-// ----- ContactButton --- //
-// ----- ContactButton --- //
-// ----- ContactButton --- //
+// ----- GenerateButton --- //
+// ----- GenerateButton --- //
+// ----- GenerateButton --- //
+
+// ----- Home ----- //
+// ----- Home ----- //
+// ----- Home ----- //
+export const sxHomeSectionOne = {
+  border: '1px solid red',
+  display: "flex",
+  flexDirection: "row",
+  // alignItems: 'center',`
+  justifyContent: "center",
+  gap: 17,
+  mt: 12,
+};
+
+export const sxHomeTextContent = {
+  border: '1px solid green',
+  wordWrap: "break-word",
+  width: "68%",
+
+};
+
+export const sxHomeChipContent = {
+  display: "flex",
+  gap: 1,
+
+}
+// ----- Home ----- //
+// ----- Home ----- //
+// ----- Home ----- //
 
 // ----- Crafts ----- //
 // ----- Crafts ----- //
@@ -693,23 +711,6 @@ export const sxCardProjectGallery = {
 // ----- EmailFOrm --- //
 // ----- EmailFOrm --- //
 // ----- EmailFOrm --- //
-
-// ----- Footer ----- //
-// ----- Footer ----- //
-// ----- Footer ----- //
-export const sxFooterContainer = {
-  // border: '1px solid red',
-  height: "1.5rem",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  width: "100%",
-  bgcolor: "info.light",
-  color: "secondary.main",
-};
-// ----- Footer ----- //
-// ----- Footer ----- //
-// ----- Footer ----- //
 
 // ----- MessageBoard ----- //
 // ----- MessageBoard ----- //
@@ -867,7 +868,6 @@ export const sxProductImageContent = {
     color: "primary.light",
     transform: "scale(1.05)",
   },
-
 };
 
 export const sxCardProduct = {
@@ -897,8 +897,6 @@ export const sxCardProductDetail = {
 // ----- ProductDetails --- //
 // ----- ProductDetails --- //
 // ----- ProductDetails --- //
-
-
 
 // ----- ProductDescription ----- //
 // ----- ProductDescription ----- //
@@ -1003,5 +1001,3 @@ export const sxProjectDescriptionContent = {
 // ----- ProjectDescription ----- //
 // ----- ProjectDescription ----- //
 // ----- ProjectDescription ----- //
-
-

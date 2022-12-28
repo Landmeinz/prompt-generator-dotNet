@@ -8,11 +8,11 @@ import { Typography, Box } from "@mui/material";
 // --- Sx Styles --- //
 import {
   sxNavContainer,
-  sxTinkerNavText,
+  sxNavText,
   // sxTinkerSubText,
 
   sxBreaksH4,
-  // sxBreaksH5,
+  sxBreaksH5,
   // sxBreaksH6,
   // sxNavH6,
 
@@ -28,11 +28,11 @@ function Nav() {
 
   return (
     <Box id="sxNavContainer" sx={sxNavContainer}>
-      <Box id="sxTinkerNavTextAbout" sx={sxTinkerNavText}>
+      <Box id="sxNavTextAbout" sx={sxNavText}>
         <Typography
-          sx={sxBreaksH4}
-          variant="h4"
-          onClick={() => handleNav("/home")}
+          sx={sxBreaksH5}
+          variant="h5"
+          onClick={() => handleNav("/home ")}
         >
           Prompt Generator
         </Typography>

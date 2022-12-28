@@ -1,0 +1,23 @@
+export const ThemesSubCategories =  [
+    '⛱ Realism/Abstraction',
+    '💾 Retro/Modern',
+    '🪐 Sci-fi',
+    '☄ Outer Space',
+    '🌎 Planets',
+    '🎌 Countries and Nations',
+    '🌾 Urban/Rural',
+    '🛋 Rooms',
+    '⚙ Architecture and Manufactured',
+    '🏝 Biomes and Landscapes',
+    '🌲 Nature',
+    '⛄ Seasons and Weather',
+    '🎄 Holidays',
+    '🐱‍👤 Professions and Types of People',
+    '🌞 Time of Day',
+    '⚽ Sports',
+    '🎵 Music Styles',
+    '📺 Cartoons, Anime, and Comics',
+    '🎆 Colors, Crystals, Sparkles, and Light',
+    '😁 Mood Based Themes',
+    '⛩ Other Themes'
+  ]
