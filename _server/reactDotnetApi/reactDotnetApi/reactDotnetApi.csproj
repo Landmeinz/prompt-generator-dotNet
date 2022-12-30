@@ -15,6 +15,7 @@
     </PackageReference>
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="3.1.32" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,9 +25,14 @@
     <None Remove="Modles\" />
     <None Remove="Context\" />
     <None Remove="Microsoft.AspNetCore.SpaServices" />
+    <None Remove="Data\" />
+    <None Remove="Newtonsoft.Json" />
+    <None Remove="Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Services\" />
+    <Folder Include="Data\" />
+    <Folder Include="Interfaces\" />
   </ItemGroup>
 </Project>

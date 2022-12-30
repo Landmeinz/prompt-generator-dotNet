@@ -12,7 +12,7 @@ using reactDotnetApi.Context;
 namespace reactDotnetApi.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20221219235450_InitialCreate")]
+    [Migration("20221229055658_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -33,6 +33,7 @@ namespace reactDotnetApi.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
 
                     b.Property<string>("category")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("genPromptCount")

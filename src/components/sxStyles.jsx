@@ -605,8 +605,15 @@ export const sxGenerateButton = {
 // ----- Home ----- //
 // ----- Home ----- //
 // ----- Home ----- //
-export const sxHomeSectionOne = {
+
+export const sxHomeContainer = {
   border: '1px solid red',
+  height: '100vh',
+
+}
+
+export const sxHomeSectionOne = {
+  // border: '1px solid red',
   display: "flex",
   flexDirection: "row",
   // alignItems: 'center',`
@@ -616,16 +623,39 @@ export const sxHomeSectionOne = {
 };
 
 export const sxHomeTextContent = {
-  border: '1px solid green',
+  // border: '1px solid green',
   wordWrap: "break-word",
   width: "68%",
-
+  display: "flex",
+  justifyContent: 'center',
+  alignItems: 'center',
 };
 
 export const sxHomeChipContent = {
-  display: "flex",
+  // border: '1px solid blue',
+  display: 'flex',
+  flexWrap: 'wrap',
+  justifyContent: 'center',
+  alignItems: 'center',
   gap: 1,
+  my: 'auto',
 
+}
+
+export const sxChip = {
+    // border: '1px solid blue',
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+
+    "&:hover": {
+      backgroundColor: "primary.dark",
+      transform: "scale(1.025)",
+    },
+    "&:active": {
+      color: "info.dark",
+      transform: "scale(1.04)",
+    },
 }
 // ----- Home ----- //
 // ----- Home ----- //
@@ -1001,3 +1031,24 @@ export const sxProjectDescriptionContent = {
 // ----- ProjectDescription ----- //
 // ----- ProjectDescription ----- //
 // ----- ProjectDescription ----- //
+
+
+// ----- PromptOutput ----- // 
+// ----- PromptOutput ----- // 
+// ----- PromptOutput ----- // 
+
+export const sxPromptContainer = {
+  border: '1px solid blue',
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+  mx: 10,
+  mt: 10,
+  gap: 3,
+
+
+}
+
+// ----- PromptOutput ----- // 
+// ----- PromptOutput ----- // 
+// ----- PromptOutput ----- // 

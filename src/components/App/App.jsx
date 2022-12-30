@@ -18,10 +18,10 @@ import {
 // import Products from "../_Pages/Products";
 // import ProductDetails from "../_Pages/ProductDetails"
 // import About from "../_Pages/About";
-import Nav from "../Nav/Nav";
+import Nav from "../Nav/Nav.jsx";
 import Home from "../_Pages/Home.jsx";
 import Admin from "../_Pages/Admin.jsx";
-import Footer from "../Footer/Footer";
+import Footer from "../Footer/Footer.jsx";
 
 // --- MUI --- //
 import { Box } from "@mui/material";
@@ -59,7 +59,7 @@ function App() {
                 style={transApp.style}
                 transition={transApp.time}
               >
-                <Nav />
+                {/* <Nav /> */}
                 <Routes>
                   <Route path="/" element={<Navigate to="/home" />} />
                   <Route path="/home" element={<Home />} />

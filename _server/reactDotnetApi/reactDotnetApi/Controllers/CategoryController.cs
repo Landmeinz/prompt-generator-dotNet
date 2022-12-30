@@ -18,10 +18,26 @@ public class CategoryController : ControllerBase
         _dbContext = dbContext;
     }
 
-    [HttpGet(Name = "ListCategories")]
-    public List<string> ListCategories()
+    [HttpGet]
+    public async Task<IActionResult> ListCategories()
     {
-        return _dbContext.Keywords.Select(kw => kw.category).ToList();
+        var categories = await _dbContext.Keywords
+            .Select(kw => kw.category)
+            .Distinct()
+            .ToListAsync();
+
+        return Ok(categories);
     }
+
+    //[HttpGet]
+    //public async Task<IActionResult> ListRandomKeywordsFromCategory()
+    //{
+    //    var categories = await _dbContext.Keywords
+    //        .Select(kw => kw.category)
+    //        .Distinct()
+    //        .ToListAsync();
+
+    //    return Ok(categories);
+    //}
 }
 

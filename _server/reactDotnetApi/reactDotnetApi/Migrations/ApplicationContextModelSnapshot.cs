@@ -31,6 +31,7 @@ namespace reactDotnetApi.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("id"));
 
                     b.Property<string>("category")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int>("genPromptCount")

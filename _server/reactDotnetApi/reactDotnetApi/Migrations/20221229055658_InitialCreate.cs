@@ -16,10 +16,10 @@ namespace reactDotnetApi.Migrations
                 {
                     id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    keyword = table.Column<string>(type: "text", nullable: true),
-                    category = table.Column<string>(type: "text", nullable: true),
+                    category = table.Column<string>(type: "text", nullable: false),
                     subCategory = table.Column<string>(type: "text", nullable: true),
                     subCategoryType = table.Column<string>(type: "text", nullable: true),
+                    keyword = table.Column<string>(type: "text", nullable: true),
                     lastPing = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     genPromptCount = table.Column<int>(type: "integer", nullable: false)
                 },

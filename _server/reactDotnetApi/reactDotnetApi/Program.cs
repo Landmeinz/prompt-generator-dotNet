@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using reactDotnetApi.Context;
+using reactDotnetApi.Interfaces;
+using reactDotnetApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 string[] allowedCorsOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>();
@@ -20,7 +22,7 @@ builder.Services.AddCors(option => option
 
 // Add local services to the container //
 //builder.Services.AddSingleton<IDisImageService, DisImageService>();
-//builder.Services.AddScoped<IDisIntegrationService, DisIntegrationService>();
+builder.Services.AddScoped<IGetRandomKeyword, GetRandomKeyword>();
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.

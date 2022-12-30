@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { ENDPOINTS, createApiEndpoint } from "../_Services/apiServices";
 import { motion, AnimatePresence } from "framer-motion";
+import { AllKeywords } from "../_Data/AllKeywords";
 
 // --- COMPONENTS --- //
 import GenerateButton from "../GenerateButton/GenerateButton";
 import CategoryList from "../CategoryList/CategoryList";
 import HelmetWrap from "../_HelmetWrap/HelmetWrap";
+import PromptOutput from "../PromptOutput/PromptOutput";
 
 // --- MUI --- //
 import { Typography, Box, Chip, Button } from "@mui/material";
@@ -17,6 +19,7 @@ import {
   sxHomeTextContent,
   sxHeroText,
   sxHomeChipContent,
+  sxHomeContainer,
 } from "../sxStyles";
 
 function Home() {
@@ -33,6 +36,8 @@ function Home() {
     fetchKeywords();
     fetchCategories();
     setPrompt("start");
+    console.log('keyword count:', keywords.length);
+    console.log('category count:', categories.length);
   }, []);
 
   function fetchKeywords() {
@@ -40,7 +45,9 @@ function Home() {
     try {
       const response = createApiEndpoint(ENDPOINTS.keyword)
         .fetch()
-        .then((response) => setKeywords(response.data));
+        .then((response) => {
+          setKeywords(response.data);
+        });
       return response;
     } catch (err) {
       console.log(err);
@@ -55,24 +62,22 @@ function Home() {
         .then((response) => {
           setCategories(response.data);
         });
-
-      console.log("should have new categories loaded");
       return response;
     } catch (err) {
       console.log(err);
     }
   }
 
-  // async function postKeyword() {
-  //   try {
-  //     const response = createApiEndpoint(ENDPOINTS.keyword)
-  //       // .post(keyword)
-  //       .then((response) => setKeywords(response.data));
-  //     return response;
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // }
+  async function postKeyword() {
+    try {
+      const response = createApiEndpoint(ENDPOINTS.keyword)
+        // .post(keyword)
+        .then((response) => setKeywords(response.data));
+      return response;
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   function getRandomKeyword() {
     let count = keywords.length;
@@ -97,29 +102,33 @@ function Home() {
   //   setDisableSelect(!disableSelect);
   // }
 
-  function handlePost() {
-    console.log("--- handlePost ---");
-    let newKeyword = {
-      category: "test category",
-      subCategory: "test subCategory",
-      subCategoryType: "test subCategoryType",
-      keyword: "test keyword",
-    };
 
-    try {
-      const response = createApiEndpoint(ENDPOINTS.keyword, newKeyword)
-        .post()
-        .then((response) => {
-          fetchCategories();
-        });
-      return response;
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  // function handlePost() {
+  //   console.log("--- handlePost ---");
+
+  //   let newKeyword = {
+  //     category: "test category",
+  //     subCategory: "test subCategory",
+  //     subCategoryType: "test subCategoryType",
+  //     keyword: "test keyword",
+  //   }
+
+  //   console.log(ThemesKeywords.length);
+
+  //   try {
+  //     const response = createApiEndpoint(ENDPOINTS.keyword, newKeyword)
+  //       .post()
+  //       .then((response) => {
+  //         fetchCategories();
+  //       });
+  //     return response;
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
 
   return (
-    <Box>
+    <Box sx={sxHomeContainer}>
       <motion.div
         initial={trans.initial}
         animate={trans.animate}
@@ -129,13 +138,11 @@ function Home() {
       >
         <Box>
           <HelmetWrap />
-
-          <Button onClick={() => handlePost()}>POST</Button>
-
           <Box id="sxHomeSectionOne" sx={sxHomeSectionOne}>
             <GenerateButton />
             <CategoryList categories={categories} />
           </Box>
+          <PromptOutput />
         </Box>
       </motion.div>
     </Box>

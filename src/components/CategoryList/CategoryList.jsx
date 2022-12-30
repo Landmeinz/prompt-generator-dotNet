@@ -7,6 +7,9 @@ import { motion, AnimatePresence } from "framer-motion";
 
 // --- MUI --- //
 import { Typography, Box, Chip } from "@mui/material";
+import DeleteIcon from "@mui/icons-material/Delete";
+import DoneIcon from "@mui/icons-material/Done";
+import PushPinIcon from "@mui/icons-material/PushPin";
 
 // --- SX STYLES --- //
 import {
@@ -15,37 +18,52 @@ import {
   sxHomeTextContent,
   sxHeroText,
   sxHomeChipContent,
+  sxChip,
 } from "../sxStyles";
 
 function CategoryList({ categories }) {
-  let categoryList = ["fake", "much mock", "not real", "more fake"];
-  function handleClick() {}
-  function handleDelete() {}
+
+  const [pinChipStatus, setPinChipStatus] = useState(false);
+
+  function handleClick(category) {
+    console.log("this should pin the chip");
+    console.log(category);
+    setPinChipStatus(true);
+  }
+
+  function handleDelete() {
+    console.log("this should unPin the chip");
+    setPinChipStatus(false);
+  }
 
   return (
     <Box id="sxHomeTextContent" sx={sxHomeTextContent}>
       <Box sx={sxHomeChipContent}>
-        {categoryList?.map((kw, k) => (
+        <Chip
+          label="All"
+          color={"primary"}
+          variant="filled"
+          onClick={() => handleClick()}
+          onDelete={() => handleDelete()}
+        />
+        <Chip
+          label="None"
+          color={"primary"}
+          variant="filled"
+          onClick={() => handleClick()}
+          onDelete={() => handleDelete()}
+        />
+        {categories?.sort().map((category) => (
           <Chip
-            key={k}
-            label={kw}
-            color={"primary"}
-            variant="filled"
-            onClick={handleClick}
-            onDelete={handleDelete}
-          />
-        ))}
-      </Box>
-      <br />
-      <Box sx={sxHomeChipContent}>
-        {categories?.map((category, i) => (
-          <Chip
-            key={i}
+            sx={sxChip}
+            key={category.id}
             label={category}
+            value={category}
             color={"primary"}
             variant="filled"
-            onClick={handleClick}
-            onDelete={handleDelete}
+            onClick={() => handleClick(category)}
+            onDelete={() => handleDelete()}
+            deleteIcon={pinChipStatus ? <DeleteIcon /> : <PushPinIcon />}
           />
         ))}
       </Box>

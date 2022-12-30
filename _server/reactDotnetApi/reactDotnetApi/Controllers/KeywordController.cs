@@ -2,6 +2,14 @@
 using Microsoft.EntityFrameworkCore;
 using reactDotnetApi.Context;
 using reactDotnetApi.Models;
+using Newtonsoft.Json;
+using System.Linq.Expressions;
+using System.Text.Json.Nodes;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.InteropServices;
+using System.Runtime.Serialization;
+using System.Linq;
+using reactDotnetApi.Interfaces;
 
 namespace reactDotnetApi.Controllers;
 
@@ -11,30 +19,93 @@ public class KeywordController : ControllerBase
 {
     private readonly ILogger<KeywordController> _logger;
     private readonly ApplicationContext _dbContext;
+    private readonly IGetRandomKeyword _getRandomKeyword;
 
-    public KeywordController(ILogger<KeywordController> logger, ApplicationContext dbContext)
+    public KeywordController(ILogger<KeywordController> logger, ApplicationContext dbContext, IGetRandomKeyword getRandomKeyword)
     {
         _logger = logger;
         _dbContext = dbContext;
+        _getRandomKeyword = getRandomKeyword;
     }
 
-    [HttpGet(Name = "ListKeywords")]
-    public IEnumerable<Keyword> ListKeywords()
+
+    [HttpGet("categories")]
+    public async Task<IActionResult> ListKeywords(string? category = null)
     {
-        return _dbContext.Keywords.ToList();
+        List<string> categoryList = category.Split(',').ToList();
+        List<Keyword> keywords = new();
+        List<Keyword> responseList = new();
+
+        //var random = new Random();
+        if (category is not null && categoryList.Count > 0)
+        {
+
+            for (int i = 0; i < categoryList.Count; i++)
+            {
+                Console.WriteLine($"--- GET RANDOM KEYWORD ---");
+                var randomKeyword = await _getRandomKeyword.Get(categoryList[i]);
+                responseList.Add(randomKeyword);
+            }
+
+            //foreach (var cat in categoryList)
+            //{
+                //Console.WriteLine($"--- category: {cat}");
+                //Console.WriteLine("--- hello we sent some categories to choose from");
+                //keywords = await _dbContext.Keywords
+                //    .Where(kw => kw.category
+                //    .Equals(cat))
+                //    .ToListAsync();
+                //Console.WriteLine($"--- keywords: {keywords}");
+                //Console.WriteLine($"--- keywords count: {keywords.Count}");
+
+                //Keyword randomKeyword = keywords.OrderBy(x => Guid.NewGuid()).First();
+                //responseList.Add(randomKeyword);
+
+            //}
+        }
+        else
+        {
+            keywords = await _dbContext.Keywords.ToListAsync();
+        }
+        return Ok(responseList);
     }
 
-    //[HttpGet(Name = "ListCategories")]
-    //public List<string> ListCategories()
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetKeyword(int id)
+    {
+        var keyword = await _dbContext.Keywords
+            .Where(kw => kw.id
+            .Equals(id))
+            .FirstOrDefaultAsync();
+        return Ok(keyword);
+    }
+
+    //[HttpGet("{random}")]
+    //public async Task<IActionResult> GetRandomKeyword([Required] List<string> categories)
     //{
-    //    return _dbContext.Keywords.Select(kw => kw.category).ToList();
+    //    List<Keyword> response = new();
+    //    var random = new Random();
+    //    foreach (var category in categories)
+    //    {
+    //        var keyword = await _dbContext.Keywords
+    //       .Where(kw => kw.category
+    //       .Contains(category))
+    //       .OrderBy(kw => random.Next())
+    //       .Take(1)
+    //       .FirstOrDefaultAsync();
+    //        response.Add(keyword);
+    //    }
+    //    return Ok(response);
     //}
 
 
-    [HttpPost(Name = "PostKeyword")]
-    public Keyword Create([FromBody] KeywordBody keywordBody)
+    [HttpPost]
+    public async Task<IActionResult> Create([FromBody] KeywordBody keywordBody)
     {
-        var lastKeyword = _dbContext.Keywords.OrderBy(x => x.id).LastOrDefault();
+        var lastKeyword = await _dbContext.Keywords
+            .OrderBy(x => x.id)
+            .LastOrDefaultAsync();
         Keyword newKeyword = new()
         {
             id = lastKeyword.id + 1,
@@ -47,8 +118,67 @@ public class KeywordController : ControllerBase
 
         };
         _dbContext.Keywords.Add(newKeyword);
-        _dbContext.SaveChanges();
-        return newKeyword;
+        await _dbContext.SaveChangesAsync();
+        return Ok(newKeyword);
     }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Update(int id, [FromBody] Keyword keyword)
+    {
+        var existingKeyword = await _dbContext.Keywords
+            .Where(kw => kw.id
+            .Equals(id))
+            .FirstOrDefaultAsync();
+
+        if (existingKeyword is null)
+            return NotFound();
+
+        existingKeyword.category = keyword.category;
+
+        _dbContext.Keywords.Update(existingKeyword);
+        await _dbContext.SaveChangesAsync();
+        return Ok(existingKeyword);
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var existingKeyword = await _dbContext.Keywords
+            .Where(kw => kw.id
+            .Equals(id))
+            .FirstOrDefaultAsync();
+
+        if (existingKeyword is not null)
+        {
+            _dbContext.Keywords.Remove(existingKeyword);
+            await _dbContext.SaveChangesAsync();
+        }
+        return NoContent();
+    }
+
+    //[HttpPost(Name = "PostKeywordList")]
+    //public int CreateFromList([FromBody] List<Keyword> keywordList)
+    //{
+    //    //var lastKeyword = _dbContext.Keywords.OrderBy(x => x.id).LastOrDefault();
+    //    //Random rnd = new Random();
+    //    foreach (var item in keywordList)
+    //    {
+    //        int start = 0;
+    //        Keyword newKeyword = new()
+    //        {
+    //            id = start++,
+    //            //id = rnd.Next(10000000, 99999999),
+    //            keyword = item.keyword,
+    //            category = item.category,
+    //            subCategory = item.subCategory,
+    //            subCategoryType = item.subCategoryType,
+    //            lastPing = DateTime.UtcNow,
+    //            genPromptCount = 0
+
+    //        };
+    //        _dbContext.Keywords.AddRangeAsync(newKeyword);
+    //    }
+    //    return _dbContext.SaveChanges();
+    //}
 }
 
