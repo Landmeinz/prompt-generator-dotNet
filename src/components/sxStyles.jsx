@@ -411,6 +411,47 @@ export const sxImageCaption = {
 // ----- CardProject --- //
 // ----- CardProject --- //
 
+// ----- CategoryPill --- //
+// ----- CategoryPill --- //
+// ----- CategoryPill --- //
+
+export const sxCategoryPillContainer = {
+  // border: '1px solid purple',
+  // display: "flex",
+  // justifyContent: "center",
+  // alignItems: "center",
+  px: ".8rem",
+  py: ".4rem",
+  borderRadius: 5,
+  color: "info.light",
+  backgroundColor: "hsla(14, 77%, 44%, 1)",
+  boxShadow: 2,
+  userSelect: 'none',
+
+  "&:hover": {
+    cursor: "pointer",
+    backgroundColor: "primary.dark",
+    // color: "secondary.main",
+    // transform: "scale(1.05)",
+    transition: ".25s",
+    boxShadow: 3,
+  },
+
+  "&:active": {
+    backgroundColor: "primary.dark",
+    // color: "secondary.main",
+    // transform: "scale(1.05)",
+    transition: ".25s",
+    transform: "scale(1.05)",
+    transition: ".1s",
+    boxShadow: 1,
+  },
+};
+
+// ----- CategoryPill --- //
+// ----- CategoryPill --- //
+// ----- CategoryPill --- //
+
 // ----- Contact --- //
 // ----- Contact --- //
 // ----- Contact --- //
@@ -563,18 +604,20 @@ export const sxGenerateButtonContainer = {
 
 export const sxGenerateButton = {
   bgcolor: "secondary.main",
-  color: "primary.light",
+  color: "primary",
   border: 1,
   borderRadius: "50%",
   borderColor: "info.light",
   fontWeight: "bold",
   transition: ".25s",
+  boxShadow: 5,
 
   "&:hover": {
     bgcolor: "primary.light",
     color: "secondary.main",
     transform: "scale(1.05)",
     transition: ".25s",
+    boxShadow: 2,
   },
 
   [theme.breakpoints.down("xl")]: {
@@ -607,10 +650,9 @@ export const sxGenerateButton = {
 // ----- Home ----- //
 
 export const sxHomeContainer = {
-  border: '1px solid red',
-  height: '100vh',
-
-}
+  border: "1px solid red",
+  height: "100vh",
+};
 
 export const sxHomeSectionOne = {
   // border: '1px solid red',
@@ -627,36 +669,37 @@ export const sxHomeTextContent = {
   wordWrap: "break-word",
   width: "68%",
   display: "flex",
-  justifyContent: 'center',
-  alignItems: 'center',
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  gap: 2,
 };
 
 export const sxHomeChipContent = {
   // border: '1px solid blue',
-  display: 'flex',
-  flexWrap: 'wrap',
-  justifyContent: 'center',
-  alignItems: 'center',
+  display: "flex",
+  flexWrap: "wrap",
+  justifyContent: "center",
+  alignItems: "center",
   gap: 1,
-  my: 'auto',
-
-}
+  my: "auto",
+};
 
 export const sxChip = {
-    // border: '1px solid blue',
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
+  // border: '1px solid blue',
+  display: "flex",
+  flexWrap: "wrap",
+  justifyContent: "center",
 
-    "&:hover": {
-      backgroundColor: "primary.dark",
-      transform: "scale(1.025)",
-    },
-    "&:active": {
-      color: "info.dark",
-      transform: "scale(1.04)",
-    },
-}
+  "&:hover": {
+    backgroundColor: "primary.dark",
+    transform: "scale(1.025)",
+  },
+  "&:active": {
+    color: "info.dark",
+    transform: "scale(1.04)",
+  },
+};
 // ----- Home ----- //
 // ----- Home ----- //
 // ----- Home ----- //
@@ -1032,23 +1075,20 @@ export const sxProjectDescriptionContent = {
 // ----- ProjectDescription ----- //
 // ----- ProjectDescription ----- //
 
-
-// ----- PromptOutput ----- // 
-// ----- PromptOutput ----- // 
-// ----- PromptOutput ----- // 
+// ----- PromptOutput ----- //
+// ----- PromptOutput ----- //
+// ----- PromptOutput ----- //
 
 export const sxPromptContainer = {
-  border: '1px solid blue',
+  border: "1px solid blue",
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
   mx: 10,
   mt: 10,
   gap: 3,
+};
 
-
-}
-
-// ----- PromptOutput ----- // 
-// ----- PromptOutput ----- // 
-// ----- PromptOutput ----- // 
+// ----- PromptOutput ----- //
+// ----- PromptOutput ----- //
+// ----- PromptOutput ----- //

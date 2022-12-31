@@ -28,7 +28,7 @@ function GenerateButton() {
   return (
     <Typography variant="h4" sx={sxGenerateButtonContainer}>
       {/* <Button onClick={() => handleNav('/admin')} sx={sxGenerateButton}> */}
-      <Button onClick={() => handleNav('/admin')} sx={sxGenerateButton}>
+      <Button sx={sxGenerateButton}>
         Generate!
       </Button>
     </Typography>

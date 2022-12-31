@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 // --- COMPONENTS --- //
 // import GenerateButton from "../GenerateButton/GenerateButton";
+import CategoryPill from "../CategoryPill/CategoryPill";
 
 // --- MUI --- //
 import { Typography, Box, Chip } from "@mui/material";
@@ -22,48 +23,30 @@ import {
 } from "../sxStyles";
 
 function CategoryList({ categories }) {
-
-  const [pinChipStatus, setPinChipStatus] = useState(false);
-
-  function handleClick(category) {
-    console.log("this should pin the chip");
-    console.log(category);
-    setPinChipStatus(true);
-  }
-
-  function handleDelete() {
-    console.log("this should unPin the chip");
-    setPinChipStatus(false);
-  }
+  // const [selectList, setSelectList] = useState([]);
+  // const callback = (payload) => {
+  //   setSelectList(payload);
+  //   console.log(selectList);
+  // };
+  const [state, setState] = useState({});
+  const callback = (payload) => {
+    setState(payload);
+    console.log(state);
+  };
 
   return (
     <Box id="sxHomeTextContent" sx={sxHomeTextContent}>
+      <Typography color="primary" variant="h4">
+        Select Some Categories
+      </Typography>
       <Box sx={sxHomeChipContent}>
-        <Chip
-          label="All"
-          color={"primary"}
-          variant="filled"
-          onClick={() => handleClick()}
-          onDelete={() => handleDelete()}
-        />
-        <Chip
-          label="None"
-          color={"primary"}
-          variant="filled"
-          onClick={() => handleClick()}
-          onDelete={() => handleDelete()}
-        />
-        {categories?.sort().map((category) => (
-          <Chip
-            sx={sxChip}
-            key={category.id}
-            label={category}
+        {categories?.sort().map((category, i) => (
+          <CategoryPill
+            categories={categories}
+            category={category}
+            callback={callback}
+            key={i}
             value={category}
-            color={"primary"}
-            variant="filled"
-            onClick={() => handleClick(category)}
-            onDelete={() => handleDelete()}
-            deleteIcon={pinChipStatus ? <DeleteIcon /> : <PushPinIcon />}
           />
         ))}
       </Box>

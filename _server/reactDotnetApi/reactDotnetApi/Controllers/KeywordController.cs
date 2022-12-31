@@ -37,37 +37,20 @@ public class KeywordController : ControllerBase
         List<Keyword> responseList = new();
 
         //var random = new Random();
-        if (category is not null && categoryList.Count > 0)
+        if (category != null && categoryList.Count > 0)
         {
-
-            for (int i = 0; i < categoryList.Count; i++)
+            foreach (var cat in categoryList)
             {
                 Console.WriteLine($"--- GET RANDOM KEYWORD ---");
-                var randomKeyword = await _getRandomKeyword.Get(categoryList[i]);
+                var randomKeyword = await _getRandomKeyword.Get(cat.Trim());
                 responseList.Add(randomKeyword);
             }
-
-            //foreach (var cat in categoryList)
-            //{
-                //Console.WriteLine($"--- category: {cat}");
-                //Console.WriteLine("--- hello we sent some categories to choose from");
-                //keywords = await _dbContext.Keywords
-                //    .Where(kw => kw.category
-                //    .Equals(cat))
-                //    .ToListAsync();
-                //Console.WriteLine($"--- keywords: {keywords}");
-                //Console.WriteLine($"--- keywords count: {keywords.Count}");
-
-                //Keyword randomKeyword = keywords.OrderBy(x => Guid.NewGuid()).First();
-                //responseList.Add(randomKeyword);
-
-            //}
         }
         else
         {
             keywords = await _dbContext.Keywords.ToListAsync();
         }
-        return Ok(responseList);
+        return Ok(responseList.Count == 0 ? keywords : responseList);
     }
 
 

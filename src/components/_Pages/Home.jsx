@@ -33,11 +33,9 @@ function Home() {
   // start by getting our keywords and categories //
   useEffect(() => {
     // fetchData();
-    fetchKeywords();
+    // fetchKeywords();
     fetchCategories();
     setPrompt("start");
-    console.log('keyword count:', keywords.length);
-    console.log('category count:', categories.length);
   }, []);
 
   function fetchKeywords() {
@@ -101,7 +99,6 @@ function Home() {
   // function handleDisableSelect() {
   //   setDisableSelect(!disableSelect);
   // }
-
 
   // function handlePost() {
   //   console.log("--- handlePost ---");
