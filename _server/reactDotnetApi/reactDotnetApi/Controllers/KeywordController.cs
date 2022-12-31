@@ -45,12 +45,20 @@ public class KeywordController : ControllerBase
                 var randomKeyword = await _getRandomKeyword.Get(cat.Trim());
                 responseList.Add(randomKeyword);
             }
+            return Ok(responseList);
         }
         else
         {
-            keywords = await _dbContext.Keywords.ToListAsync();
+            return Ok(await _dbContext.Keywords.ToListAsync());
         }
-        return Ok(responseList.Count == 0 ? keywords : responseList);
+        //return Ok(responseList.Count == 0 ? keywords : responseList);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> ListAllKeywords()
+    {
+        var keywords = await _dbContext.Keywords.ToListAsync();
+        return Ok(keywords);
     }
 
 

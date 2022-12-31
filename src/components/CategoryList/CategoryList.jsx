@@ -21,30 +21,80 @@ import {
   sxHomeChipContent,
   sxChip,
 } from "../sxStyles";
+import { Remove } from "@mui/icons-material";
+import { click } from "@testing-library/user-event/dist/click";
 
 function CategoryList({ categories }) {
-  // const [selectList, setSelectList] = useState([]);
-  // const callback = (payload) => {
-  //   setSelectList(payload);
-  //   console.log(selectList);
-  // };
-  const [state, setState] = useState({});
+  const [selectList, setSelectList] = useState([]);
+
   const callback = (payload) => {
-    setState(payload);
-    console.log(state);
+    if (payload == "All") {
+      setSelectList([...categories]);
+    } else if (payload == "None") {
+      setSelectList([]);
+    } else {
+      setSelectList([...selectList, payload]);
+    }
+    logStatus();
   };
+
+  const callBackRemove = (payload) => {
+    // selectList.filter()
+    // console.log(selectList.indexOf(payload));
+    console.log("remove:", payload);
+    const index = selectList.indexOf(payload);
+    if (index > -1) {
+      // only splice array when item is found
+      selectList.splice(index, 1); // 2nd parameter means remove one item only
+    }
+    console.log(selectList);
+    logStatus();
+
+    const kindex = categories.indexOf(payload);
+    if (kindex > -1) {
+      // only splice array when item is found
+      selectList.splice(kindex, 1); // 2nd parameter means remove one item only
+    }
+    logStatus();
+  };
+
+  const logStatus = () => {
+    console.log("selectList:", selectList);
+  };
+
+  function click(){
+    console.log('hello click');
+  }
 
   return (
     <Box id="sxHomeTextContent" sx={sxHomeTextContent}>
       <Typography color="primary" variant="h4">
         Select Some Categories
       </Typography>
+
       <Box sx={sxHomeChipContent}>
+        <CategoryPill
+          // category="All"
+          // callback={callback}
+          // callBackRemove={callBackRemove}
+          // selectList={selectList}
+          // value="All"
+          // onClick={() => click()}
+        />
+        <CategoryPill
+          category="None"
+          callback={callback}
+          callBackRemove={callBackRemove}
+          selectList={selectList}
+          value="None"
+        />
         {categories?.sort().map((category, i) => (
           <CategoryPill
             categories={categories}
             category={category}
             callback={callback}
+            callBackRemove={callBackRemove}
+            selectList={selectList}
             key={i}
             value={category}
           />

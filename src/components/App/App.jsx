@@ -3,8 +3,7 @@ import axios from "axios";
 import { ThemeProvider } from "@mui/material/styles";
 import { motion, AnimatePresence } from "framer-motion";
 import { Helmet } from "react-helmet";
-// import { useDispatch, useSelector } from 'react-redux';
-// import { store } from '../../redux/store';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   // BrowserRouter,
   HashRouter as Router,
@@ -13,11 +12,7 @@ import {
   Navigate,
 } from "react-router-dom";
 
-// // --- Components --- //
-// import Crafts from "../_Pages/Crafts";
-// import Products from "../_Pages/Products";
-// import ProductDetails from "../_Pages/ProductDetails"
-// import About from "../_Pages/About";
+// --- Components --- //
 import Nav from "../Nav/Nav.jsx";
 import Home from "../_Pages/Home.jsx";
 import Admin from "../_Pages/Admin.jsx";
@@ -30,6 +25,16 @@ import { Box } from "@mui/material";
 import { theme, transApp, sxApp, sxAppContainer } from "../sxStyles";
 
 function App() {
+  const dispatch = useDispatch();
+  // const currentDate = useSelector((store) => store.currentDate);
+
+  useEffect(() => {
+    // fetchCurrentDate();
+    // dispatch({ type: "FETCH_CURRENT_DATE" });
+    dispatch({ type: "FETCH_CATEGORIES" });
+    // dispatch({ type: "FETCH_KEYWORDS" });
+  }, [dispatch]);
+
   return (
     <ThemeProvider theme={theme}>
       <Box id="sxApp" sx={sxApp}>

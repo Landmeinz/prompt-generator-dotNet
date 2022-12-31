@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ENDPOINTS, createApiEndpoint } from "../_Services/apiServices";
 import { motion, AnimatePresence } from "framer-motion";
-import { AllKeywords } from "../_Data/AllKeywords";
+import { useDispatch, useSelector } from 'react-redux';
 
 // --- COMPONENTS --- //
 import GenerateButton from "../GenerateButton/GenerateButton";
@@ -27,74 +27,76 @@ function Home() {
   const [prompt, setPrompt] = useState("");
   const [disableSelect, setDisableSelect] = useState({});
 
-  const [categories, setCategories] = useState([]);
-  const [keywords, setKeywords] = useState([]);
+  // const [categories, setCategories] = useState([]);
+  // const [keywords, setKeywords] = useState([]);
+
+  const keywords = useSelector((store) => store.keywords);
+  const categories = useSelector((store) => store.categories);
 
   // start by getting our keywords and categories //
   useEffect(() => {
     // fetchData();
     // fetchKeywords();
-    fetchCategories();
-    setPrompt("start");
+    // fetchCategories();
   }, []);
 
-  function fetchKeywords() {
-    console.log("--- fetchKeywords ---");
-    try {
-      const response = createApiEndpoint(ENDPOINTS.keyword)
-        .fetch()
-        .then((response) => {
-          setKeywords(response.data);
-        });
-      return response;
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  // function fetchKeywords() {
+  //   console.log("--- fetchKeywords ---");
+  //   try {
+  //     const response = createApiEndpoint(ENDPOINTS.keyword)
+  //       .fetch()
+  //       .then((response) => {
+  //         setKeywords(response.data);
+  //       });
+  //     return response;
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
 
-  function fetchCategories() {
-    console.log("--- fetchCategories ---");
-    try {
-      const response = createApiEndpoint(ENDPOINTS.category)
-        .fetch()
-        .then((response) => {
-          setCategories(response.data);
-        });
-      return response;
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  // function fetchCategories() {
+  //   console.log("--- fetchCategories ---");
+  //   try {
+  //     const response = createApiEndpoint(ENDPOINTS.category)
+  //       .fetch()
+  //       .then((response) => {
+  //         setCategories(response.data);
+  //       });
+  //     return response;
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
 
-  async function postKeyword() {
-    try {
-      const response = createApiEndpoint(ENDPOINTS.keyword)
-        // .post(keyword)
-        .then((response) => setKeywords(response.data));
-      return response;
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  // async function postKeyword() {
+  //   try {
+  //     const response = createApiEndpoint(ENDPOINTS.keyword)
+  //       // .post(keyword)
+  //       .then((response) => setKeywords(response.data));
+  //     return response;
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
 
-  function getRandomKeyword() {
-    let count = keywords.length;
-    let randomCount = Math.floor(Math.random() * count);
-    console.log("number", randomCount);
-    return keywords[randomCount];
-  }
+  // function getRandomKeyword() {
+  //   let count = keywords.length;
+  //   let randomCount = Math.floor(Math.random() * count);
+  //   console.log("number", randomCount);
+  //   return keywords[randomCount];
+  // }
 
-  function handleClick() {
-    console.log("clicked on randomTheme");
-    setPrompt("yeas");
-    // let currentKeywords = fetchKeywords();
-    let currentKeywords = keywords;
-    console.log("--- currentKeywords", currentKeywords);
-    // setPrompt(currentKeywords[Math.floor(Math.random() * currentKeywords.length)]);
-    let promptSet = getRandomKeyword().keyword;
-    console.log("promptSet", promptSet);
-    setPrompt("hello love");
-  }
+  // function handleClick() {
+  //   console.log("clicked on randomTheme");
+  //   setPrompt("yeas");
+  //   // let currentKeywords = fetchKeywords();
+  //   let currentKeywords = keywords;
+  //   console.log("--- currentKeywords", currentKeywords);
+  //   // setPrompt(currentKeywords[Math.floor(Math.random() * currentKeywords.length)]);
+  //   let promptSet = getRandomKeyword().keyword;
+  //   console.log("promptSet", promptSet);
+  //   setPrompt("hello love");
+  // }
 
   // function handleDisableSelect() {
   //   setDisableSelect(!disableSelect);
@@ -140,6 +142,12 @@ function Home() {
             <CategoryList categories={categories} />
           </Box>
           <PromptOutput />
+
+          {keywords?.sort().map((keyword, i) => (
+        <Box key={i}>
+          {keyword}
+        </Box>
+        ))}
         </Box>
       </motion.div>
     </Box>

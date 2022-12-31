@@ -11,14 +11,8 @@ import { Typography, Box, Chip, Button } from "@mui/material";
 // --- SX STYLES --- //
 import { trans, sxCategoryPillContainer } from "../sxStyles";
 
-function CategoryPill({ categories, category, callback }) {
+function CategoryPill({ selectList, category, callback, callBackRemove }) {
   const [selectStatus, setSelectStatus] = useState(false);
-  // const [selectList, setSelectList] = useState(["yes"]);
-
-  const state = {
-    example: '👋'
-}
-const handleCallback = () => callback(state)
 
   function handleClick(category) {
     // setSelectList([...selectList, category]);
@@ -29,16 +23,14 @@ const handleCallback = () => callback(state)
 
     // setSelectStatus(!selectStatus);
 
-    statusCheck();
-  }
-
-  function statusCheck() {
-    // console.log(`--- selectStatus: ${selectStatus}`);
-    // console.log(`--- selectList: ${selectList}`);
+    if (selectList.includes(category)) {
+      return callBackRemove(category);
+    }
+    callback(category);
   }
 
   return (
-    <Box sx={sxCategoryPillContainer} onClick={() => handleCallback()}>
+    <Box sx={sxCategoryPillContainer} onClick={() => handleClick(category)}>
       <Typography variant="body">{category}</Typography>
     </Box>
   );
