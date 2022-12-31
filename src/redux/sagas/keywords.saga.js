@@ -16,6 +16,19 @@ function* fetchKeywords() {
     }
 }; // fetchKeywords
 
+// --- GET SINGLE KEYWORD --- //
+function* fetchKeyword(action) {
+    let url = `${BASE_URL}/api/keyword/${action.payload}`;
+    try {
+        const response = yield axios.get(url)
+        yield put({ type: 'SET_KEYWORD', payload: response.data })
+        console.log('-- saga data response:', response.data);
+        
+    } catch (error) {
+        console.log('ERROR fetchKeyword Saga', error);
+    }
+}; // fetchKeyword
+
 // --- POST NEW KEYWORD --- //
 function* postKeyword(action) {
     let url = `${BASE_URL}/api/keyword`;
@@ -30,6 +43,7 @@ function* postKeyword(action) {
 
 function* keywordsSaga() {
     yield takeLatest('FETCH_KEYWORDS', fetchKeywords);
+    yield takeLatest('FETCH_KEYWORD', fetchKeyword);
     yield takeLatest('POST_KEYWORD', postKeyword);
 }; // keywordsSaga
 

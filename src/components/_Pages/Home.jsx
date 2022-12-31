@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ENDPOINTS, createApiEndpoint } from "../_Services/apiServices";
 import { motion, AnimatePresence } from "framer-motion";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector } from "react-redux";
 
 // --- COMPONENTS --- //
 import GenerateButton from "../GenerateButton/GenerateButton";
@@ -30,8 +30,8 @@ function Home() {
   // const [categories, setCategories] = useState([]);
   // const [keywords, setKeywords] = useState([]);
 
-  const keywords = useSelector((store) => store.keywords);
   const categories = useSelector((store) => store.categories);
+  const keyword = useSelector((store) => store.keyword);
 
   // start by getting our keywords and categories //
   useEffect(() => {
@@ -141,13 +141,14 @@ function Home() {
             <GenerateButton />
             <CategoryList categories={categories} />
           </Box>
-          <PromptOutput />
 
-          {keywords?.sort().map((keyword, i) => (
-        <Box key={i}>
-          {keyword}
-        </Box>
-        ))}
+          {keyword && (
+            <>
+              <h3>{keyword.keyword}</h3>
+              <h5>hello</h5>
+            </>
+          )}
+          <PromptOutput />
         </Box>
       </motion.div>
     </Box>

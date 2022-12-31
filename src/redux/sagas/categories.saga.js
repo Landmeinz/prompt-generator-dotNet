@@ -9,7 +9,7 @@ function* fetchCategories() {
     try {
         const response = yield axios.get(url)
         yield put({ type: 'SET_CATEGORIES', payload: response.data })
-        console.log('-- saga data response:', response.data);
+        // console.log('-- saga data response:', response.data);
         
     } catch (error) {
         console.log('ERROR fetchCategories Saga', error);

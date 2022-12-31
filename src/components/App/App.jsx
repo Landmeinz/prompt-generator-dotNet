@@ -32,7 +32,7 @@ function App() {
     // fetchCurrentDate();
     // dispatch({ type: "FETCH_CURRENT_DATE" });
     dispatch({ type: "FETCH_CATEGORIES" });
-    // dispatch({ type: "FETCH_KEYWORDS" });
+    dispatch({ type: "FETCH_KEYWORD", payload: 783 });
   }, [dispatch]);
 
   return (

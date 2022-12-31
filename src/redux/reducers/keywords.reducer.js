@@ -4,6 +4,10 @@ const keywordsReducer = (state = [], action) => {
             console.log('--- hit SET_KEYWORDS reducer', action.payload);
             return action.payload;
 
+        case 'SET_KEYWORD':
+            console.log('--- hit SET_KEYWORD reducer', action.payload);
+            return action.payload;
+            
         default:
             return state;
     }
