@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { ENDPOINTS, createApiEndpoint } from "../_Services/apiServices";
 import { motion, AnimatePresence } from "framer-motion";
-import { AllKeywords } from "../_Data/AllKeywords";
+import { put, takeLatest } from "redux-saga/effects";
+import { useDispatch, useSelector } from "react-redux";
 
 // --- COMPONENTS --- //
 
@@ -11,27 +12,24 @@ import { Typography, Box, Chip, Button } from "@mui/material";
 // --- SX STYLES --- //
 import { trans, sxCategoryPillContainer } from "../sxStyles";
 
-function CategoryPill({ selectList, category, callback, callBackRemove }) {
-  const [selectStatus, setSelectStatus] = useState(false);
+function CategoryPill({ categories, category }) {
+  const dispatch = useDispatch();
+  // const [currentSelection, setCurrentSelection] = useState([]);
+  const selectedCategories = useSelector((store) => store.selectedCategories);
 
   function handleClick(category) {
-    // setSelectList([...selectList, category]);
+    console.log("--- clicked on", category, "---");
 
-    !selectStatus
-      ? console.log(`this should pin the ${category} pill`)
-      : console.log(`this should UnPin the ${category} pill`);
-
-    // setSelectStatus(!selectStatus);
-
-    if (selectList.includes(category)) {
-      return callBackRemove(category);
-    }
-    callback(category);
+    selectedCategories.includes(category)
+      ? dispatch({ type: "REMOVE_SELECTED_CATEGORY", payload: category })
+      : dispatch({ type: "SET_SELECTED_CATEGORIES", payload: category });
   }
 
   return (
     <Box sx={sxCategoryPillContainer} onClick={() => handleClick(category)}>
       <Typography variant="body">{category}</Typography>
+
+      {selectedCategories?.includes(category) ? <p>yes!</p> : <p>no!</p>}
     </Box>
   );
 }

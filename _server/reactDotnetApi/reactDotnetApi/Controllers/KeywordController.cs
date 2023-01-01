@@ -33,24 +33,16 @@ public class KeywordController : ControllerBase
     public async Task<IActionResult> ListKeywords(string? category = null)
     {
         List<string> categoryList = category.Split(',').ToList();
-        List<Keyword> keywords = new();
         List<Keyword> responseList = new();
 
-        //var random = new Random();
-        if (category != null && categoryList.Count > 0)
+        foreach (var cat in categoryList)
         {
-            foreach (var cat in categoryList)
-            {
-                Console.WriteLine($"--- GET RANDOM KEYWORD ---");
-                var randomKeyword = await _getRandomKeyword.Get(cat.Trim());
-                responseList.Add(randomKeyword);
-            }
-            return Ok(responseList);
+            Console.WriteLine($"--- GET RANDOM KEYWORD ---");
+            var randomKeyword = await _getRandomKeyword.Get(cat.Trim());
+            responseList.Add(randomKeyword);
         }
-        else
-        {
-            return Ok(await _dbContext.Keywords.ToListAsync());
-        }
+        return Ok(responseList);
+
         //return Ok(responseList.Count == 0 ? keywords : responseList);
     }
 

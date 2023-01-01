@@ -29,8 +29,8 @@ namespace reactDotnetApi.Services
         {
             Console.WriteLine($"--- category: {category}");
             Console.WriteLine("--- hello we sent some categories to choose from");
-            List<Keyword> keywords = new();
-            keywords = await _dbContext.Keywords
+            //List<Keyword> keywords = new();
+            var keywords = await _dbContext.Keywords
                 .Where(kw => kw.category
                 .Equals(category))
                 .ToListAsync();

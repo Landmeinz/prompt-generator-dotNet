@@ -27,18 +27,14 @@ function Home() {
   const [prompt, setPrompt] = useState("");
   const [disableSelect, setDisableSelect] = useState({});
 
-  // const [categories, setCategories] = useState([]);
-  // const [keywords, setKeywords] = useState([]);
-
-  const categories = useSelector((store) => store.categories);
   const keyword = useSelector((store) => store.keyword);
 
-  // start by getting our keywords and categories //
-  useEffect(() => {
-    // fetchData();
-    // fetchKeywords();
-    // fetchCategories();
-  }, []);
+
+  const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch({ type: "FETCH_KEYWORD", payload: 783 });
+  // }, [dispatch]);
 
   // function fetchKeywords() {
   //   console.log("--- fetchKeywords ---");
@@ -139,15 +135,11 @@ function Home() {
           <HelmetWrap />
           <Box id="sxHomeSectionOne" sx={sxHomeSectionOne}>
             <GenerateButton />
-            <CategoryList categories={categories} />
+            <CategoryList />
           </Box>
 
-          {keyword && (
-            <>
-              <h3>{keyword.keyword}</h3>
-              <h5>hello</h5>
-            </>
-          )}
+          {keyword ? <>YES! {keyword.keyword}</> : <>NO!</>}
+          <h3>hello</h3>
           <PromptOutput />
         </Box>
       </motion.div>

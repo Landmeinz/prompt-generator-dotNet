@@ -5,6 +5,8 @@ import errorsReducer from './errors.reducer';
 import currentDateReducer from './currentDate.Reducer';
 import keywordsReducer from './keywords.reducer';
 import categoriesReducer from './categories.reducer';
+import randomKeywords from './keywordsRandom.reducer';
+import selectedCategories from './selectedCategories.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -15,8 +17,10 @@ import categoriesReducer from './categories.reducer';
 const rootReducer = combineReducers({
   errors: errorsReducer,              // contains registrationMessage and loginMessage
   categories: categoriesReducer,      // all categories in the DB
-  keywords: keywordsReducer,          // all keywords in the DB
-  currentDate: currentDateReducer,    // getting the current year month and day
+  keywords: keywordsReducer,      
+  randomKeywords: randomKeywords,    // all keywords in the DB
+  currentDate: currentDateReducer,
+  selectedCategories: selectedCategories, // getting the current year month and day
 
 });
 

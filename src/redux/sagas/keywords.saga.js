@@ -9,7 +9,7 @@ function* fetchKeywords() {
     try {
         const response = yield axios.get(url)
         yield put({ type: 'SET_KEYWORDS', payload: response.data })
-        console.log('-- saga data response:', response.data);
+        // console.log('-- saga data response:', response.data);
         
     } catch (error) {
         console.log('ERROR fetchKeywords Saga', error);
@@ -22,29 +22,45 @@ function* fetchKeyword(action) {
     try {
         const response = yield axios.get(url)
         yield put({ type: 'SET_KEYWORD', payload: response.data })
-        console.log('-- saga data response:', response.data);
+        // console.log('-- saga data response:', response.data);
         
     } catch (error) {
         console.log('ERROR fetchKeyword Saga', error);
     }
 }; // fetchKeyword
 
-// --- POST NEW KEYWORD --- //
-function* postKeyword(action) {
-    let url = `${BASE_URL}/api/keyword`;
+// --- GET RANDOM KEYWORDS --- //
+function* fetchRandomKeywords(action) {
+    let url = `${BASE_URL}/api/keyword/categories?category=${action.payload}`;
     try {
-        yield axios.post(url, action.payload)
-        yield put({ type: 'FETCH_KEYWORDS' })
+        const response = yield axios.get(url)
+        yield put({ type: 'SET_RANDOM_KEYWORDS', payload: response.data })
+        // console.log('-- saga data response:', response.data);
+        
     } catch (error) {
-        console.log('ERROR', error);
-        yield put({ type: 'ERROR postKeyword SAGA' })
+        console.log('ERROR fetchRandomKeywords Saga', error);
     }
-}; // postKeyword
+}; // fetchRandomKeywords
+
+
+
+// --- POST NEW KEYWORD --- //
+// function* postKeyword(action) {
+//     let url = `${BASE_URL}/api/keyword`;
+//     try {
+//         yield axios.post(url, action.payload)
+//         yield put({ type: 'FETCH_KEYWORDS' })
+//     } catch (error) {
+//         console.log('ERROR', error);
+//         yield put({ type: 'ERROR postKeyword SAGA' })
+//     }
+// }; // postKeyword
 
 function* keywordsSaga() {
     yield takeLatest('FETCH_KEYWORDS', fetchKeywords);
     yield takeLatest('FETCH_KEYWORD', fetchKeyword);
-    yield takeLatest('POST_KEYWORD', postKeyword);
+    yield takeLatest('FETCH_RANDOM_KEYWORDS', fetchRandomKeywords);
+    // yield takeLatest('POST_KEYWORD', postKeyword);
 }; // keywordsSaga
 
 export default keywordsSaga;
