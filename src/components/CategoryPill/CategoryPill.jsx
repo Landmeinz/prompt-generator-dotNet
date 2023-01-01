@@ -12,13 +12,25 @@ import { Typography, Box, Chip, Button } from "@mui/material";
 // --- SX STYLES --- //
 import { trans, sxCategoryPillContainer } from "../sxStyles";
 
-function CategoryPill({ categories, category }) {
+function CategoryPill({category }) {
   const dispatch = useDispatch();
   // const [currentSelection, setCurrentSelection] = useState([]);
+  const categories = useSelector((store) => store.categories);
   const selectedCategories = useSelector((store) => store.selectedCategories);
+  console.log('--- selectedCategories,', selectedCategories);
 
   function handleClick(category) {
     console.log("--- clicked on", category, "---");
+
+    if (category == "All") {
+      return dispatch({
+        type: "SET_SELECTED_CATEGORIES_ALL",
+        payload: categories,
+      });
+    }
+    if (category == "None") {
+      return dispatch({ type: "SET_SELECTED_CATEGORIES_NONE" });
+    }
 
     selectedCategories.includes(category)
       ? dispatch({ type: "REMOVE_SELECTED_CATEGORY", payload: category })

@@ -4,6 +4,13 @@ const selectedCategories = (state = [], action) => {
             // console.log('--- hit SET_CATEGORIES reducer', action.payload);
             return [...state, action.payload];
 
+        case 'SET_SELECTED_CATEGORIES_ALL':
+            console.log('payload', action.payload);
+            return [...action.payload];
+
+        case 'SET_SELECTED_CATEGORIES_NONE':
+            return [];
+
         case 'REMOVE_SELECTED_CATEGORY':
             const index = state.indexOf(action.payload);
             if (index > -1) { // only splice array when item is found

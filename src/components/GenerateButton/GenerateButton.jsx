@@ -26,6 +26,9 @@ function GenerateButton() {
   const selectedCategories = useSelector((store) => store.selectedCategories);
 
   function getRandomKeywords() {
+    if (selectedCategories.length == 0) {
+      return 
+    }
     return dispatch({
       type: "FETCH_RANDOM_KEYWORDS",
       payload: selectedCategories,
