@@ -451,6 +451,39 @@ export const sxCategoryPillContainer = {
   },
 };
 
+export const sxCategoryPillContainerSelected = {
+    // border: "1px solid purple",
+  // display: "flex",
+  // justifyContent: "center",
+  // alignItems: "center",
+  px: ".8rem",
+  py: ".4rem",
+  borderRadius: 5,
+  color: "info.light",
+  backgroundColor: "hsla(14, 77%, 26%, 1)",
+  boxShadow: 2,
+  userSelect: "none",
+
+  "&:hover": {
+    cursor: "pointer",
+    backgroundColor: "primary.dark",
+    // color: "secondary.main",
+    // transform: "scale(1.05)",
+    transition: ".25s",
+    boxShadow: 3,
+  },
+
+  "&:active": {
+    backgroundColor: "primary.dark",
+    // color: "secondary.main",
+    // transform: "scale(1.05)",
+    transition: ".25s",
+    transform: "scale(1.05)",
+    transition: ".1s",
+    boxShadow: 1,
+  },
+};
+
 // ----- CategoryPill --- //
 // ----- CategoryPill --- //
 // ----- CategoryPill --- //
@@ -687,7 +720,6 @@ export const sxCategoryList = {
   justifyContent: "center",
   alignItems: "center",
   px: 5,
-
 };
 
 export const sxHomeChipContent = {
@@ -1103,16 +1135,15 @@ export const sxPromptContainer = {
   mt: 10,
   gap: 3,
   color: "info.light",
-
 };
 
 export const sxPromptCopy = {
   //  border: "1px solid blue",
-   display: "flex",
-   flexDirection: "column",
-   alignItems: "center",
-   gap: 2,
-}
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  gap: 2,
+};
 
 export const sxPromptOutput = {
   display: "flex",
@@ -1124,8 +1155,7 @@ export const sxPromptOutput = {
   mx: 4,
   p: 2,
   borderRadius: 4,
-
-}
+};
 
 // ----- PromptOutput ----- //
 // ----- PromptOutput ----- //
@@ -1140,7 +1170,6 @@ export const sxUserInputContainer = {
   flexDirection: "column",
   alignItems: "center",
   gap: 2,
-
 };
 
 export const sxButtonTextContent = {
@@ -1152,10 +1181,11 @@ export const sxButtonTextContent = {
 
 export const sxTextInput = {
   // border: "1px solid purple",
+  borderColor: "info.light",
   color: "white",
   backgroundColor: "secondary",
   width: "18rem",
-}
+};
 
 // ----- UserInputs ----- //
 // ----- UserInputs ----- //

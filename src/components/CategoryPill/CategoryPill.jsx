@@ -10,9 +10,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Typography, Box, Chip, Button } from "@mui/material";
 
 // --- SX STYLES --- //
-import { trans, sxCategoryPillContainer } from "../sxStyles";
+import { trans, sxCategoryPillContainer, sxCategoryPillContainerSelected } from "../sxStyles";
+import { color } from "@mui/system";
 
-function CategoryPill({category }) {
+function CategoryPill({ category }) {
   const dispatch = useDispatch();
   // const [currentSelection, setCurrentSelection] = useState([]);
   const categories = useSelector((store) => store.categories);
@@ -37,8 +38,19 @@ function CategoryPill({category }) {
   }
 
   return (
-    <Box sx={sxCategoryPillContainer} onClick={() => handleClick(category)}>
-      <Typography variant="body">{category}</Typography>
+    <Box>
+      {selectedCategories.includes(category) ? (
+        <Box sx={sxCategoryPillContainerSelected} onClick={() => handleClick(category)}>
+          <Typography variant="body">{category}</Typography>
+        </Box>
+      ) : (
+        <Box sx={sxCategoryPillContainer} onClick={() => handleClick(category)}>
+        <Typography variant="body">{category}</Typography>
+      </Box>
+      )}
+      {/* <Box sx={sxCategoryPillContainer} onClick={() => handleClick(category)}>
+        <Typography variant="body">{category}</Typography>
+      </Box> */}
     </Box>
   );
 }
