@@ -17,7 +17,6 @@ function CategoryPill({category }) {
   // const [currentSelection, setCurrentSelection] = useState([]);
   const categories = useSelector((store) => store.categories);
   const selectedCategories = useSelector((store) => store.selectedCategories);
-  console.log('--- selectedCategories,', selectedCategories);
 
   function handleClick(category) {
     console.log("--- clicked on", category, "---");
@@ -40,8 +39,6 @@ function CategoryPill({category }) {
   return (
     <Box sx={sxCategoryPillContainer} onClick={() => handleClick(category)}>
       <Typography variant="body">{category}</Typography>
-
-      {selectedCategories?.includes(category) ? <p>yes!</p> : <p>no!</p>}
     </Box>
   );
 }

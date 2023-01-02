@@ -7,27 +7,43 @@ import { useDispatch, useSelector } from "react-redux";
 // import GenerateButton from "../GenerateButton/GenerateButton";
 
 // --- MUI --- //
-import { Typography, Box, Chip } from "@mui/material";
+import { Typography, Box, Chip, Button } from "@mui/material";
 
 // --- SX STYLES --- //
-import { trans, sxPromptContainer } from "../sxStyles";
+import { trans, sxPromptContainer, sxPromptCopy, sxPromptOutput } from "../sxStyles";
+import { SignalCellularNoSimTwoTone, StoreTwoTone } from "@mui/icons-material";
 
 function PromptOutput() {
   const randomKeywords = useSelector((store) => store.randomKeywords);
+  const userInputs = useSelector((store) => store.userInputs);
 
   // function handleClick() {
   //     console.log('clicked');
   // }; // handleClick
 
+  console.log("userInputs", userInputs);
+console.log("randomKeywords", randomKeywords);
+
   return (
     <Box id="PromptContainer" sx={sxPromptContainer}>
-      <Typography variant="h5">Prompt:</Typography>
+      <Box sx={sxPromptCopy}>
+        <Typography variant="h5">Prompt:</Typography>
+        <Button variant="outlined">Copy</Button>
+      </Box>
 
-      {randomKeywords?.sort().map((kw, i) => (
-        <Typography key={i} variant="h4">
-          {kw.keyword}
-        </Typography>
-      ))}
+      <Box sx={sxPromptOutput}>
+        {userInputs.map((input, k) => (
+          <Typography key={k} variant="body1">
+            {input ? `${input}, ` : ''}
+          </Typography>
+        ))}
+
+        {randomKeywords?.map((kw, i) => (
+          <Typography key={i} variant="body1">
+            {kw.keyword ? `${kw.keyword}, ` : ''}
+          </Typography>
+        ))}
+      </Box>
     </Box>
   );
 }

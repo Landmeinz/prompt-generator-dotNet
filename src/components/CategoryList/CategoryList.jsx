@@ -17,9 +17,9 @@ import PushPinIcon from "@mui/icons-material/PushPin";
 import {
   trans,
   sxHomeSectionOne,
-  sxHomeTextContent,
   sxHeroText,
   sxHomeChipContent,
+  sxCategoryList,
   sxChip,
 } from "../sxStyles";
 import { Remove } from "@mui/icons-material";
@@ -69,7 +69,7 @@ function CategoryList() {
   // }
 
   return (
-    <Box id="sxHomeTextContent" sx={sxHomeTextContent}>
+    <Box id="categoryList" sx={sxCategoryList}>
       <Typography color="primary" variant="h4">
         Select Some Categories
       </Typography>

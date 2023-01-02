@@ -56,8 +56,11 @@ export const theme = createTheme({
 });
 
 export const sxApp = {
+  border: 1,
+  borderColor: "secondary.main",
   bgcolor: "secondary.main",
   height: "100%",
+  zIndex: "-1",
   m: 0,
   p: 0,
 };
@@ -141,7 +144,7 @@ export const sxNavH6 = {
 // ----- Nav ----- //
 // ----- Nav ----- //
 export const sxNavContainer = {
-  // border: '1px solid red',
+  // border: "1px solid red",
   py: 2,
   px: 2,
   display: "flex",
@@ -206,7 +209,7 @@ export const sxHeroText = {
 // ----- CardsAdditionalDetails ----- //
 // ----- CardsAdditionalDetails ----- //
 export const sxAdditionalDetailsTitle = {
-  // border: '1px solid red',
+  // border: "1px solid red",
   textAlign: "center",
   mx: 21,
   lineHeight: "1",
@@ -242,7 +245,7 @@ export const sxDetailsContainer = {
 // ----- CardDefineLeft --- //
 // ----- CardDefineLeft --- //
 export const sxCardDefineLeftContainer = {
-  // border: '1px solid red',
+  // border: "1px solid red",
   display: "flex",
   flexDirection: "row",
   justifyContent: "center",
@@ -278,7 +281,7 @@ export const sxCardDefineLeftContainer = {
 // ----- CardDefineRight --- //
 // ----- CardDefineRight --- //
 export const sxCardDefineRightContainer = {
-  //   border: '1px solid red',
+  //   border: "1px solid red",
   display: "flex",
   flexDirection: "row",
   justifyContent: "center",
@@ -313,7 +316,7 @@ export const sxCardDefineRightContainer = {
 // ----- CardDefine SHARED --- //
 // ----- CardDefine SHARED --- //
 export const sxTinkerDefined = {
-  //   border: '1px solid green',
+  //   border: "1px solid green",
   px: 5,
   py: 3,
   display: "flex",
@@ -351,7 +354,7 @@ export const sxCardDefineBody = {
 };
 
 export const sxBoxColor = {
-  // border: '1px solid purple',
+  // border: "1px solid purple",
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
@@ -416,7 +419,7 @@ export const sxImageCaption = {
 // ----- CategoryPill --- //
 
 export const sxCategoryPillContainer = {
-  // border: '1px solid purple',
+  // border: "1px solid purple",
   // display: "flex",
   // justifyContent: "center",
   // alignItems: "center",
@@ -426,7 +429,7 @@ export const sxCategoryPillContainer = {
   color: "info.light",
   backgroundColor: "hsla(14, 77%, 44%, 1)",
   boxShadow: 2,
-  userSelect: 'none',
+  userSelect: "none",
 
   "&:hover": {
     cursor: "pointer",
@@ -458,7 +461,7 @@ export const sxCategoryPillContainer = {
 export const sxContactSectionOne = {
   display: "flex",
   flexDirection: "column",
-  // alignItems: 'center',`
+  // alignItems: "center",`
   justifyContent: "center",
   alignItems: "center",
   gap: 17,
@@ -486,7 +489,7 @@ export const sxContactText = {
 };
 
 export const sxInputText = {
-  // border: '1px solid red',
+  // border: "1px solid red",
   bgcolor: "info.light",
   color: "secondary.main",
   borderRadius: 3,
@@ -558,7 +561,7 @@ export const sxPostButton = {
 };
 
 export const sxMessageBoardContainer = {
-  // border: '1px solid red',
+  // border: "1px solid red",
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
@@ -566,7 +569,7 @@ export const sxMessageBoardContainer = {
 };
 
 export const sxMessageBoardHeader = {
-  // border: '1px solid green',
+  // border: "1px solid green",
   display: "flex",
   flexDirection: "row",
   justifyContent: "center",
@@ -580,7 +583,7 @@ export const sxMessageBoardHeader = {
 // ----- Footer ----- //
 // ----- Footer ----- //
 export const sxFooterContainer = {
-  // border: '1px solid red',
+  // border: "1px solid red",
   height: "1.5rem",
   display: "flex",
   alignItems: "center",
@@ -650,33 +653,45 @@ export const sxGenerateButton = {
 // ----- Home ----- //
 
 export const sxHomeContainer = {
-  border: "1px solid red",
+  // border: "1px solid red",
   height: "100vh",
 };
 
 export const sxHomeSectionOne = {
-  // border: '1px solid red',
+  // border: "1px solid red",
   display: "flex",
   flexDirection: "row",
-  // alignItems: 'center',`
+  // alignItems: "center",`
   justifyContent: "center",
-  gap: 17,
+  gap: 8,
   mt: 12,
+  px: 4,
 };
 
-export const sxHomeTextContent = {
-  // border: '1px solid green',
+export const sxButtonContainer = {
+  // border: "1px solid blue",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: 10,
+  width: "1fr",
+};
+
+export const sxCategoryList = {
+  // border: "1px solid green",
   wordWrap: "break-word",
-  width: "68%",
+  width: "3fr",
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "center",
-  gap: 2,
+  px: 5,
+
 };
 
 export const sxHomeChipContent = {
-  // border: '1px solid blue',
+  // border: "1px solid blue",
   display: "flex",
   flexWrap: "wrap",
   justifyContent: "center",
@@ -686,7 +701,7 @@ export const sxHomeChipContent = {
 };
 
 export const sxChip = {
-  // border: '1px solid blue',
+  // border: "1px solid blue",
   display: "flex",
   flexWrap: "wrap",
   justifyContent: "center",
@@ -708,10 +723,10 @@ export const sxChip = {
 // ----- Crafts ----- //
 // ----- Crafts ----- //
 export const sxCraftsSectionOne = {
-  // border: '1px solid red',
+  // border: "1px solid red",
   display: "flex",
   flexDirection: "column",
-  // alignItems: 'center',
+  // alignItems: "center",
   justifyContent: "center",
   gap: 17,
   mt: 12,
@@ -738,7 +753,7 @@ export const sxCraftsHeroText = {
 };
 
 export const sxProjectContainer = {
-  // border: '1px solid blue',
+  // border: "1px solid blue",
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
@@ -789,7 +804,7 @@ export const sxCardProjectGallery = {
 // ----- MessageBoard ----- //
 // ----- MessageBoard ----- //
 export const sxMessageBoardContent = {
-  // border: '1px solid blue',
+  // border: "1px solid blue",
   display: "flex",
   flexDirection: "column",
   gap: 2,
@@ -820,7 +835,7 @@ export const sxMessageBoardText = {
 };
 
 export const sxMsgBoardCardHeader = {
-  // border: '1px solid green',
+  // border: "1px solid green",
   display: "flex",
   flexDirection: "row",
   justifyContent: "space-between",
@@ -857,10 +872,10 @@ export const sxMsgBoardCardBodyText = {
 // ----- Products ----- //
 // ----- Products ----- //
 export const sxProductSectionOne = {
-  // border: '1px solid red',
+  // border: "1px solid red",
   display: "flex",
   flexDirection: "column",
-  // alignItems: 'center',
+  // alignItems: "center",
   justifyContent: "center",
   gap: 17,
   mt: 12,
@@ -887,7 +902,7 @@ export const sxProductHeroText = {
 };
 
 export const sxProductContainer = {
-  // border: '1px solid blue',
+  // border: "1px solid blue",
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
@@ -975,7 +990,7 @@ export const sxCardProductDetail = {
 // ----- ProductDescription ----- //
 // ----- ProductDescription ----- //
 export const sxProductDescriptionTitle = {
-  // border: '1px solid red',
+  // border: "1px solid red",
   display: "flex",
   justifyContent: "center",
   textAlign: "center",
@@ -998,7 +1013,7 @@ export const sxProductDescriptionTitle = {
 };
 
 export const sxProductDescriptionContent = {
-  // border: '1px solid red',
+  // border: "1px solid red",
   display: "flex",
   flexDirection: "column",
   gap: 1,
@@ -1027,7 +1042,7 @@ export const sxProductDescriptionContent = {
 // ----- ProjectDescription ----- //
 // ----- ProjectDescription ----- //
 export const sxProjectDescriptionTitle = {
-  // border: '1px solid red',
+  // border: "1px solid red",
   display: "flex",
   justifyContent: "center",
   textAlign: "center",
@@ -1050,7 +1065,7 @@ export const sxProjectDescriptionTitle = {
 };
 
 export const sxProjectDescriptionContent = {
-  // border: '1px solid red',
+  // border: "1px solid red",
   display: "flex",
   flexDirection: "column",
   gap: 1,
@@ -1080,15 +1095,68 @@ export const sxProjectDescriptionContent = {
 // ----- PromptOutput ----- //
 
 export const sxPromptContainer = {
-  border: "1px solid blue",
+  // border: "1px solid blue",
   display: "flex",
   flexDirection: "row",
   alignItems: "center",
   mx: 10,
   mt: 10,
   gap: 3,
+  color: "info.light",
+
 };
+
+export const sxPromptCopy = {
+  //  border: "1px solid blue",
+   display: "flex",
+   flexDirection: "column",
+   alignItems: "center",
+   gap: 2,
+}
+
+export const sxPromptOutput = {
+  display: "flex",
+  flexDirection: "row",
+  border: 1,
+  borderColor: "info.light",
+  minWidth: "85%",
+  height: "5rem",
+  mx: 4,
+  p: 2,
+  borderRadius: 4,
+
+}
 
 // ----- PromptOutput ----- //
 // ----- PromptOutput ----- //
 // ----- PromptOutput ----- //
+
+// ----- UserInputs ----- //
+// ----- UserInputs ----- //
+// ----- UserInputs ----- //
+export const sxUserInputContainer = {
+  // border: "1px solid blue",
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  gap: 2,
+
+};
+
+export const sxButtonTextContent = {
+  // border: "1px solid green",
+  display: "flex",
+  flexDirection: "row",
+  alignItems: "center",
+};
+
+export const sxTextInput = {
+  // border: "1px solid purple",
+  color: "white",
+  backgroundColor: "secondary",
+  width: "18rem",
+}
+
+// ----- UserInputs ----- //
+// ----- UserInputs ----- //
+// ----- UserInputs ----- //
