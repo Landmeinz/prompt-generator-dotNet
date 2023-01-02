@@ -75,14 +75,8 @@ function CategoryList() {
       </Typography>
 
       <Box sx={sxHomeChipContent}>
-        <CategoryPill
-          category="All"
-          value="All"
-        />
-        <CategoryPill
-          category="None"
-          value="None"
-        />
+        <CategoryPill category="All" value="All" />
+        <CategoryPill category="None" value="None" />
         {categories?.sort().map((category, i) => (
           <CategoryPill
             key={i}

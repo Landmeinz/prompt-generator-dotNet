@@ -42,12 +42,13 @@ function UserInputs() {
   function handleClick() {
     console.log("--- clicked on handleClick ---");
     console.log("--- inputs:", inputs);
-    dispatch({ type: "SET_USER_INPUTS", payload: inputs });
+    dispatch({ type: "SET_USER_INPUTS", payload: inputs.trim() });
+    setInputList("");
   }
 
   return (
     <Box sx={sxUserInputContainer}>
-      <Typography color="info.light" variant="h6">Add Your Own Word</Typography>
+      <Typography color="info.light" variant="h6">Add Your Own Text</Typography>
       <Box sx={sxButtonTextContent}>
         <Button onClick={() => handleClick()}><AddCircleIcon fontSize="large"/></Button>
         <TextField

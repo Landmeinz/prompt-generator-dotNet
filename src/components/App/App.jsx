@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { ThemeProvider } from "@mui/material/styles";
 import { motion, AnimatePresence } from "framer-motion";
 import { Helmet } from "react-helmet";
@@ -32,7 +31,6 @@ function App() {
     // fetchCurrentDate();
     // dispatch({ type: "FETCH_CURRENT_DATE" });
     dispatch({ type: "FETCH_CATEGORIES" });
-    dispatch({ type: "FETCH_KEYWORD", payload: 783 });
   }, [dispatch]);
 
   return (

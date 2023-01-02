@@ -56,18 +56,27 @@ export const theme = createTheme({
 });
 
 export const sxApp = {
-  border: 1,
-  borderColor: "secondary.main",
-  bgcolor: "secondary.main",
-  height: "100%",
-  zIndex: "-1",
+  // border: 1,
+  // border: '1px solid red',
+  position: "absolute",
+  // borderColor: "secondary",
+  bgcolor: "hsla(220, 20%, 20%, 1)",
+  height: "100vh",
+  overflow: "hidden",
+  overflowY: "hidden",
+  overflowX: "hidden",
   m: 0,
   p: 0,
+  zIndex: 1000,
+
 };
 
 export const sxAppContainer = {
   height: "100%",
-  pb: 20,
+  // position: "absolute",
+  backgroundColor: "secondary",
+
+  // pb: 20,
 };
 
 export const sxBreaksH4 = {
@@ -624,6 +633,9 @@ export const sxFooterContainer = {
   width: "100%",
   bgcolor: "info.light",
   color: "secondary.main",
+
+  position: "absolute",
+  bottom: 0,
 };
 // ----- Footer ----- //
 // ----- Footer ----- //
@@ -687,17 +699,17 @@ export const sxGenerateButton = {
 
 export const sxHomeContainer = {
   // border: "1px solid red",
-  height: "100vh",
+  // height: "100vh",
 };
 
 export const sxHomeSectionOne = {
-  // border: "1px solid red",
+  // border: "1px solid blue",
   display: "flex",
   flexDirection: "row",
   // alignItems: "center",`
   justifyContent: "center",
   gap: 8,
-  mt: 12,
+  mt: 8 ,
   px: 4,
 };
 
@@ -1181,10 +1193,21 @@ export const sxButtonTextContent = {
 
 export const sxTextInput = {
   // border: "1px solid purple",
+  border: 1,
   borderColor: "info.light",
+  borderRadius: 2,
   color: "white",
   backgroundColor: "secondary",
   width: "18rem",
+
+  "&:active": {
+    border: 1,
+    borderColor: "info.light",
+    borderRadius: 2,
+    backgroundColor: "secondary",
+    width: "18rem",
+  },
+
 };
 
 // ----- UserInputs ----- //
