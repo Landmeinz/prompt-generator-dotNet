@@ -1,7 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { ENDPOINTS, createApiEndpoint } from "../_Services/apiServices";
-import { motion, AnimatePresence } from "framer-motion";
-import { put, takeLatest } from "redux-saga/effects";
 import { useDispatch, useSelector } from "react-redux";
 
 // --- COMPONENTS --- //
@@ -10,12 +7,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { Typography, Box, Chip, Button } from "@mui/material";
 
 // --- SX STYLES --- //
-import { trans, sxCategoryPillContainer, sxCategoryPillContainerSelected } from "../sxStyles";
-import { color } from "@mui/system";
+import {
+  sxCategoryPillContainer,
+  sxCategoryPillContainerSelected,
+} from "../sxStyles";
 
 function CategoryPill({ category }) {
   const dispatch = useDispatch();
-  // const [currentSelection, setCurrentSelection] = useState([]);
   const categories = useSelector((store) => store.categories);
   const selectedCategories = useSelector((store) => store.selectedCategories);
 
@@ -38,19 +36,24 @@ function CategoryPill({ category }) {
   }
 
   return (
-    <Box>
+    <Box id="categoryPillComponent">
       {selectedCategories.includes(category) ? (
-        <Box sx={sxCategoryPillContainerSelected} onClick={() => handleClick(category)}>
+        <Box
+          id="categoryPillContainerSelected"
+          sx={sxCategoryPillContainerSelected}
+          onClick={() => handleClick(category)}
+        >
           <Typography variant="body">{category}</Typography>
         </Box>
       ) : (
-        <Box sx={sxCategoryPillContainer} onClick={() => handleClick(category)}>
-        <Typography variant="body">{category}</Typography>
-      </Box>
+        <Box
+          id="categoryPillContainer"
+          sx={sxCategoryPillContainer}
+          onClick={() => handleClick(category)}
+        >
+          <Typography variant="body">{category}</Typography>
+        </Box>
       )}
-      {/* <Box sx={sxCategoryPillContainer} onClick={() => handleClick(category)}>
-        <Typography variant="body">{category}</Typography>
-      </Box> */}
     </Box>
   );
 }

@@ -1,22 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { ENDPOINTS, createApiEndpoint } from "../_Services/apiServices";
-import { motion, AnimatePresence } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 
 // --- COMPONENTS --- //
-// import GenerateButton from "../GenerateButton/GenerateButton";
 
 // --- MUI --- //
 import { Typography, Box, Chip, Button } from "@mui/material";
 
 // --- SX STYLES --- //
 import {
-  trans,
   sxPromptContainer,
   sxPromptCopy,
   sxPromptOutput,
+  sxCopyButton,
 } from "../sxStyles";
-import { SignalCellularNoSimTwoTone, StoreTwoTone } from "@mui/icons-material";
 
 function PromptOutput() {
   const randomKeywords = useSelector((store) => store.randomKeywords);
@@ -25,8 +21,6 @@ function PromptOutput() {
   function handleCopy() {
     console.log("handleCopy");
     let text = randomKeywords + userInputs;
-    // let textToCopy = `${randomKeywords}${userInputs}`;
-    // navigator.clipboard.writeText(JSON.stringify(textToCopy));
     try {
       navigator.clipboard.writeText(text);
       console.log("Content copied to clipboard");
@@ -39,15 +33,20 @@ function PromptOutput() {
   console.log("randomKeywords", randomKeywords);
 
   return (
-    <Box id="PromptContainer" sx={sxPromptContainer}>
-      <Box sx={sxPromptCopy}>
+    <Box id="promptContainer" sx={sxPromptContainer}>
+      <Box id="promptCopy" sx={sxPromptCopy}>
         <Typography variant="h5">Prompt:</Typography>
-        <Button onClick={() => handleCopy()} variant="outlined">
+        <Button
+          id="copyButton"
+          sx={sxCopyButton}
+          onClick={() => handleCopy()}
+          variant="contained"
+        >
           Copy
         </Button>
       </Box>
 
-      <Box sx={sxPromptOutput}>
+      <Box id="promptOutput" sx={sxPromptOutput}>
         {userInputs.map((input, i) => (
           <Typography id="promptText" key={i} variant="body1" value={input}>
             {input ? `${input}, ` : ""}

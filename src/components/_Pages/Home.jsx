@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ENDPOINTS, createApiEndpoint } from "../_Services/apiServices";
 import { motion, AnimatePresence } from "framer-motion";
-import { useDispatch, useSelector } from "react-redux";
 
 // --- COMPONENTS --- //
 import GenerateButton from "../GenerateButton/GenerateButton";
@@ -17,23 +15,14 @@ import { Typography, Box, Chip, Button } from "@mui/material";
 import {
   trans,
   sxHomeSectionOne,
-  sxHomeTextContent,
-  sxHeroText,
-  sxHomeChipContent,
-  sxHomeContainer,
   sxButtonContainer,
   
 } from "../sxStyles";
 
 function Home() {
-  // this will need to be updated to an array to handle items from multiple categories //
-  const [prompt, setPrompt] = useState("");
-  const [disableSelect, setDisableSelect] = useState({});
-
-  const dispatch = useDispatch();
 
   return (
-    <Box sx={sxHomeContainer}>
+    <Box id="homeContainer">
       <motion.div
         initial={trans.initial}
         animate={trans.animate}
@@ -43,8 +32,8 @@ function Home() {
       >
         <Box>
           <HelmetWrap />
-          <Box id="sxHomeSectionOne" sx={sxHomeSectionOne}>
-            <Box sx={sxButtonContainer}>
+          <Box id="homeSectionOne" sx={sxHomeSectionOne}>
+            <Box id="buttonContainer" sx={sxButtonContainer}>
               <GenerateButton />
               <UserInputs />
             </Box>

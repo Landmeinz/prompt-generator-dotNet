@@ -12,7 +12,6 @@ import {
 } from "react-router-dom";
 
 // --- Components --- //
-import Nav from "../Nav/Nav.jsx";
 import Home from "../_Pages/Home.jsx";
 import Admin from "../_Pages/Admin.jsx";
 import Footer from "../Footer/Footer.jsx";
@@ -28,14 +27,12 @@ function App() {
   // const currentDate = useSelector((store) => store.currentDate);
 
   useEffect(() => {
-    // fetchCurrentDate();
-    // dispatch({ type: "FETCH_CURRENT_DATE" });
     dispatch({ type: "FETCH_CATEGORIES" });
   }, [dispatch]);
 
   return (
     <ThemeProvider theme={theme}>
-      <Box id="sxApp" sx={sxApp}>
+      <Box id="app" sx={sxApp}>
         <Helmet>
           <title>Prompt Generator</title>
           <meta
@@ -52,7 +49,7 @@ function App() {
           />
         </Helmet>
 
-        <Box id="sxAppContainer" sx={sxAppContainer}>
+        <Box id="appContainer" sx={sxAppContainer}>
           <Router>
             <AnimatePresence mode="wait" initial={true}>
               <motion.div
