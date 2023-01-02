@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // --- COMPONENTS --- //
 
 // --- MUI --- //
-import { Typography, Box, Chip, Button } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 
 // --- SX STYLES --- //
 import {
@@ -20,20 +20,20 @@ function CategoryPill({ category }) {
   function handleClick(category) {
     console.log("--- clicked on", category, "---");
 
-    if (category == "All") {
+    if (category === "All") {
       return dispatch({
         type: "SET_SELECTED_CATEGORIES_ALL",
         payload: categories,
       });
     }
-    if (category == "None") {
+    if (category === "None") {
       return dispatch({ type: "SET_SELECTED_CATEGORIES_NONE" });
     }
 
     selectedCategories.includes(category)
       ? dispatch({ type: "REMOVE_SELECTED_CATEGORY", payload: category })
       : dispatch({ type: "SET_SELECTED_CATEGORIES", payload: category });
-  }
+  } // handleClick;
 
   return (
     <Box id="categoryPillComponent">

@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 
 // --- COMPONENTS --- //
 
 // --- MUI --- //
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import { Typography, Box, Chip, Button, TextField } from "@mui/material";
+import { Typography, Box, Button, TextField } from "@mui/material";
 
 // --- SX STYLES --- //
 import {
@@ -23,7 +23,7 @@ function UserInputs() {
   function handleClick() {
     dispatch({ type: "SET_USER_INPUTS", payload: inputs.trim() });
     setInputs("");
-  }
+  } // handleClick;
 
   return (
     <Box id="userInputContainer" sx={sxUserInputContainer}>
@@ -37,12 +37,13 @@ function UserInputs() {
           variant="outlined"
           value={inputs}
           autoComplete="off"
+          size="normal"
           onChange={(event) => setInputs(event.target.value)}
         />
       </Box>
 
       <Button od="addTextButton" sx={sxAddTextButton} onClick={() => handleClick()}>
-        <AddCircleIcon color="secondary" fontSize="large" />
+        <AddCircleIcon color="secondary" fontSize="medium" />
       </Button>
     </Box>
   );

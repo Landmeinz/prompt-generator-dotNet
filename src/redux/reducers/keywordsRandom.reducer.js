@@ -5,9 +5,12 @@ const keywordsRandom = (state = [], action) => {
             console.log('--- hit SET_RANDOM_KEYWORDS reducer', action.payload);
             return action.payload;
 
+        case 'CLEAR_RANDOM_KEYWORDS':
+            return [];
+
         default:
             return state;
     }
-} // keywordsReducer;
+} // keywordsRandom;
 
 export default keywordsRandom;

@@ -151,7 +151,6 @@ export const sxApp = {
 
 export const sxAppContainer = {
   // border: '1px solid red',
-  height: "100%",
   backgroundColor: "secondary",
 
 };
@@ -212,7 +211,6 @@ export const sxCategoryPillContainer = {
 
   "&:active": {
     backgroundColor: "primary.dark",
-    transition: ".25s",
     transform: "scale(1.05)",
     transition: ".1s",
     boxShadow: 1,
@@ -238,7 +236,6 @@ export const sxCategoryPillContainerSelected = {
 
   "&:active": {
     backgroundColor: "primary.dark",
-    transition: ".25s",
     transform: "scale(1.05)",
     transition: ".1s",
     boxShadow: 1,
@@ -404,11 +401,28 @@ export const sxCopyButton = {
   backgroundColor: "primary.main",
   color: "secondary.main",
   fontWeight: "bold",
+  width: "5rem",
+
+  "&:hover": {
+    color: "info.light",
+  },
 };
+
+export const sxClearButton = {
+  backgroundColor: "primary.main",
+  color: "secondary.main",
+  fontWeight: "bold",
+  width: "5rem",
+
+  "&:hover": {
+    color: "info.light",
+  },
+}
 
 export const sxPromptOutput = {
   display: "flex",
   flexDirection: "row",
+  flexWrap: "wrap",
   border: 1,
   borderColor: "info.light",
   minWidth: "85%",
@@ -431,7 +445,6 @@ export const sxUserInputContainer = {
   display: "flex",
   flexDirection: "column",
   justifyContent: "start",
-  alignItems: "start",
   alignItems: "center",
   gap: 1,
 };

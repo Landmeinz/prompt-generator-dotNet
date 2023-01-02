@@ -5,9 +5,12 @@ const setUserInputs = (state = [], action) => {
             console.log('--- hit SET_USER_INPUTS reducer', action.payload);
             return [...state, action.payload];
 
+        case 'CLEAR_USER_INPUTS':
+            return [];
+
         default:
             return state;
     }
-} // keywordsReducer;
+} // setUserInputs;
 
 export default setUserInputs;

@@ -1,13 +1,8 @@
 import { all } from 'redux-saga/effects';
-// import loginSaga from './login.saga';
-// import registrationSaga from './registration.saga';
-// import userSaga from './user.saga';
-// import plantSaga from './plant.saga';
-// import photoSaga from './photo.saga';
-// import currentDateSaga from './current_date.saga';
-// import messages from './messages.saga';
-import keywordsSaga from './keywords.saga';
+
+import currentDateSaga from './currentDate.saga';
 import categoriesSaga from './categories.saga';
+import keywordsSaga from './keywords.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -18,14 +13,7 @@ import categoriesSaga from './categories.saga';
 // and login triggers setting the user
 export default function* rootSaga() {
   yield all([
-    // loginSaga(), // login saga is now registered
-    // registrationSaga(),
-    // userSaga(),
-    // plantSaga(),
-    // photoSaga(),
-    // currentDateSaga(),
-    // messages(),
-    // userListSaga(),
+    currentDateSaga(),
     categoriesSaga(),
     keywordsSaga(),
   ]);

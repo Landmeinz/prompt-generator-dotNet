@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 // --- COMPONENTS --- //
 
 // --- MUI --- //
-import { Typography, Box, Chip, Button } from "@mui/material";
+import { Typography, Box, Button } from "@mui/material";
 
 // --- SX STYLES --- //
 import {
@@ -12,9 +12,11 @@ import {
   sxPromptCopy,
   sxPromptOutput,
   sxCopyButton,
+  sxClearButton,
 } from "../sxStyles";
 
 function PromptOutput() {
+  const dispatch = useDispatch();
   const randomKeywords = useSelector((store) => store.randomKeywords);
   const userInputs = useSelector((store) => store.userInputs);
 
@@ -27,15 +29,16 @@ function PromptOutput() {
     } catch (err) {
       console.error("Failed to copy: ", err);
     }
-  } // handleCopy
+  } // PromptOutput;
 
-  console.log("userInputs", userInputs);
-  console.log("randomKeywords", randomKeywords);
+  function handleClear() {
+    dispatch({ type: "CLEAR_RANDOM_KEYWORDS" });
+    dispatch({ type: "CLEAR_USER_INPUTS" });
+  } // handleClear;
 
   return (
     <Box id="promptContainer" sx={sxPromptContainer}>
       <Box id="promptCopy" sx={sxPromptCopy}>
-        <Typography variant="h5">Prompt:</Typography>
         <Button
           id="copyButton"
           sx={sxCopyButton}
@@ -43,6 +46,14 @@ function PromptOutput() {
           variant="contained"
         >
           Copy
+        </Button>
+        <Button
+          id="clearButton"
+          sx={sxClearButton}
+          onClick={() => handleClear()}
+          variant="contained"
+        >
+          Clear
         </Button>
       </Box>
 

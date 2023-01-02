@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
 
 // --- COMPONENTS --- //
 import GenerateButton from "../GenerateButton/GenerateButton";
@@ -9,7 +9,7 @@ import PromptOutput from "../PromptOutput/PromptOutput";
 import UserInputs from "../UserInputs/UserInputs";
 
 // --- MUI --- //
-import { Typography, Box, Chip, Button } from "@mui/material";
+import { Box} from "@mui/material";
 
 // --- SX STYLES --- //
 import {

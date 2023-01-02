@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import { motion, AnimatePresence } from "framer-motion";
 import { Helmet } from "react-helmet";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from "react-redux";
 import {
-  // BrowserRouter,
   HashRouter as Router,
   Route,
   Routes,
@@ -24,7 +23,6 @@ import { theme, transApp, sxApp, sxAppContainer } from "../sxStyles";
 
 function App() {
   const dispatch = useDispatch();
-  // const currentDate = useSelector((store) => store.currentDate);
 
   useEffect(() => {
     dispatch({ type: "FETCH_CATEGORIES" });

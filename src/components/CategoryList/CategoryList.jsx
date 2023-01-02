@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 
 // --- COMPONENTS --- //
 import CategoryPill from "../CategoryPill/CategoryPill";
 
 // --- MUI --- //
-import { Typography, Box, Chip } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 
 // --- SX STYLES --- //
 import {
@@ -15,7 +15,6 @@ import {
 } from "../sxStyles";
 
 function CategoryList() {
-  const dispatch = useDispatch();
   const categories = useSelector((store) => store.categories);
 
   return (
