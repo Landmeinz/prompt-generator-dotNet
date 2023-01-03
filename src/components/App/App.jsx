@@ -66,8 +66,8 @@ function App() {
               </motion.div>
             </AnimatePresence>
           </Router>
+          <Footer />
         </Box>
-        <Footer />
       </Box>
     </ThemeProvider>
   );

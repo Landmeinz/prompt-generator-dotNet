@@ -14,15 +14,17 @@ import { Box} from "@mui/material";
 // --- SX STYLES --- //
 import {
   trans,
+  sxHomeContainer,
   sxHomeSectionOne,
   sxButtonContainer,
-  
+  sxHomeContent,
+
 } from "../sxStyles";
 
 function Home() {
 
   return (
-    <Box id="homeContainer">
+    <Box id="homeContainer" sx={sxHomeContainer}>
       <motion.div
         initial={trans.initial}
         animate={trans.animate}
@@ -30,7 +32,7 @@ function Home() {
         style={trans.style}
         transition={trans.time}
       >
-        <Box>
+        <Box id="homeContent" sx={sxHomeContent}>
           <HelmetWrap />
           <Box id="homeSectionOne" sx={sxHomeSectionOne}>
             <Box id="buttonContainer" sx={sxButtonContainer}>

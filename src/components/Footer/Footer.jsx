@@ -9,7 +9,7 @@ import { sxFooterContainer } from "../sxStyles";
 
 function Footer() {
   return (
-    <Box id="sxFooterContainer" sx={sxFooterContainer}>
+    <Box id="footerContainer" sx={sxFooterContainer}>
       <Helmet>
         <meta
           name="description"

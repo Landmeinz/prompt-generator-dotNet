@@ -144,14 +144,20 @@ export const sxApp = {
   // border: '1px solid red',
   position: "absolute",
   bgcolor: "hsla(220, 20%, 20%, 1)",
-  height: "100vh",
+  minHeight: "100vh",
   m: 0,
   p: 0,
 };
 
 export const sxAppContainer = {
-  // border: '1px solid red',
+  // border: '1px solid yellow',
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "end",
+  alignItems: "end",
   backgroundColor: "secondary",
+  // minHeight: "100vh",
+
 
 };
 
@@ -172,6 +178,9 @@ export const sxCategoryList = {
   justifyContent: "center",
   alignItems: "center",
   px: 5,
+  gap: 4,
+  textAlign: "center",
+
 };
 
 export const sxCategoryChipContent = {
@@ -251,7 +260,7 @@ export const sxCategoryPillContainerSelected = {
 // ----- Footer ----- //
 
 export const sxFooterContainer = {
-  // border: "1px solid red",
+  border: "1px solid green",
   height: "1.5rem",
   display: "flex",
   alignItems: "center",
@@ -260,8 +269,8 @@ export const sxFooterContainer = {
   bgcolor: "info.light",
   color: "secondary.main",
 
-  position: "absolute",
-  bottom: 0,
+  position: "sticky",
+  // bottom: 0,
 };
 
 // ----- Footer ----- //
@@ -325,18 +334,29 @@ export const sxGenerateButton = {
 // ----- Home ----- //
 // ----- Home ----- //
 
-// export const sxHomeContainer = {
-// };
+export const sxHomeContainer = {
+  height: "100%",
+
+};
 
 export const sxHomeSectionOne = {
-  // border: "1px solid blue",
+  // border: "1px solid red",
   display: "flex",
   flexDirection: "row",
   justifyContent: "center",
+  alignItems: "center",
   gap: 8,
   mt: 8,
   px: 4,
+  height: "100%",
+
 };
+
+export const sxHomeContent = {
+  // border: "1px solid blue",
+  minHeight: "96vh",
+
+}
 
 export const sxButtonContainer = {
   // border: "1px solid blue",
@@ -346,6 +366,8 @@ export const sxButtonContainer = {
   justifyContent: "center",
   gap: 6,
   width: "1fr",
+  height: "100%",
+
 };
 
 // ----- Home ----- //
@@ -384,7 +406,7 @@ export const sxPromptContainer = {
   flexDirection: "row",
   alignItems: "center",
   mx: 10,
-  mt: 8,
+  my: 8,
   gap: 3,
   color: "info.light",
 };
@@ -420,13 +442,14 @@ export const sxClearButton = {
 }
 
 export const sxPromptOutput = {
+  //  border: "1px solid blue",
   display: "flex",
   flexDirection: "row",
   flexWrap: "wrap",
   border: 1,
   borderColor: "info.light",
   minWidth: "85%",
-  height: "5rem",
+  minHeight: "5rem",
   mx: 4,
   p: 2,
   borderRadius: 4,

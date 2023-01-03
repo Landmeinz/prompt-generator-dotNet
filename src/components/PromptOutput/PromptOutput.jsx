@@ -23,12 +23,16 @@ function PromptOutput() {
   function handleCopy() {
     console.log("handleCopy");
     let text = randomKeywords + userInputs;
-    try {
-      navigator.clipboard.writeText(text);
-      console.log("Content copied to clipboard");
-    } catch (err) {
-      console.error("Failed to copy: ", err);
-    }
+    navigator.clipboard.writeText(text);
+    console.log("Content copied to clipboard:", text);
+
+    // try {
+    //   navigator.clipboard.writeText(text);
+    //   console.log("Content copied to clipboard");
+    // } catch (err) {
+    //   console.error("Failed to copy: ", err);
+    // }
+
   } // PromptOutput;
 
   function handleClear() {
@@ -58,7 +62,7 @@ function PromptOutput() {
       </Box>
 
       <Box id="promptOutput" sx={sxPromptOutput}>
-        {userInputs.map((input, i) => (
+        {userInputs?.map((input, i) => (
           <Typography id="promptText" key={i} variant="body1" value={input}>
             {input ? `${input}, ` : ""}
           </Typography>
