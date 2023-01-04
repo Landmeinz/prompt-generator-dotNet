@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DateController.cs</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../";
+    var thisFile = "Controllers/DateController.cs";
+    var defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container">
+    <div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+    
+      <tr>
+        <td class="docs">
+          <h1>DateController.cs</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+    
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1"></a>
+</div>
+
+        </td>
+        <td class="code highlight">
+          <pre class="csharp">﻿<span class="hljs-keyword">using</span> Microsoft.AspNetCore.Mvc;
+<span class="hljs-keyword">using</span> Microsoft.EntityFrameworkCore;
+<span class="hljs-keyword">using</span> reactDotnetApi.Context;
+<span class="hljs-keyword">using</span> reactDotnetApi.Models;
+<span class="hljs-keyword">using</span> reactDotnetApi.Interfaces;
+<span class="hljs-keyword">using</span> Microsoft.EntityFrameworkCore.Infrastructure;
+
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">reactDotnetApi.Controllers</span>;
+
+[<span class="hljs-meta">ApiController</span>]
+[<span class="hljs-meta">Route(<span class="hljs-meta-string">"api/[controller]"</span>)</span>]
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">DateController</span> : <span class="hljs-title">ControllerBase</span>
+{
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> ILogger&lt;KeywordController&gt; _logger;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> ApplicationContext _dbContext;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">DateController</span>(<span class="hljs-params">ILogger&lt;KeywordController&gt; logger, ApplicationContext dbContext</span>)</span>
+    {
+        _logger = logger;
+        _dbContext = dbContext;
+    }
+
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2"></a>
+</div>
+<p>[HttpGet]
+public async Task<IActionResult> GetDateTime()
+{
+var currentDateTime = await _dbContext.
+.Select(&quot;CURRENT_DATE&quot;);</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="csharp">
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3"></a>
+</div>
+<p>var dQuery = _dbContext.CreateQuery<DateTime>(&quot;CurrentDateTime() &quot;);
+DateTime dbDate = dQuery.AsEnumerable().First();</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="csharp">
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4"></a>
+</div>
+<p>var query = from cd in _dbContext.Keywords
+select &quot;CURRENT_DATE&quot;;</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="csharp">
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5"></a>
+</div>
+<p>var currentDateTime = query.First<DateTime>();</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="csharp">
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-6" id="section-6"></a>
+</div>
+<p>return Ok(currentDateTime);
+}</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="csharp">}
+
+
+</pre>
+        </td>
+      </tr>
+    
+  </tbody>
+</table>
+
+  </div>
+</body>
+</html>

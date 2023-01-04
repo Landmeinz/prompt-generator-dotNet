@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CategoryController.cs</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../";
+    var thisFile = "Controllers/CategoryController.cs";
+    var defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container">
+    <div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+    
+      <tr>
+        <td class="docs">
+          <h1>CategoryController.cs</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+    
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1"></a>
+</div>
+
+        </td>
+        <td class="code highlight">
+          <pre class="csharp">﻿<span class="hljs-keyword">using</span> Microsoft.AspNetCore.Mvc;
+<span class="hljs-keyword">using</span> Microsoft.EntityFrameworkCore;
+<span class="hljs-keyword">using</span> reactDotnetApi.Context;
+<span class="hljs-keyword">using</span> reactDotnetApi.Models;
+
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">reactDotnetApi.Controllers</span>;
+
+[<span class="hljs-meta">ApiController</span>]
+[<span class="hljs-meta">Route(<span class="hljs-meta-string">"api/[controller]"</span>)</span>]
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">CategoryController</span> : <span class="hljs-title">ControllerBase</span>
+{
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> ILogger&lt;KeywordController&gt; _logger;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> ApplicationContext _dbContext;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">CategoryController</span>(<span class="hljs-params">ILogger&lt;KeywordController&gt; logger, ApplicationContext dbContext</span>)</span>
+    {
+        _logger = logger;
+        _dbContext = dbContext;
+    }
+
+    [<span class="hljs-meta">HttpGet</span>]
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> Task&lt;IActionResult&gt; <span class="hljs-title">ListCategories</span>(<span class="hljs-params"></span>)</span>
+    {
+        <span class="hljs-keyword">var</span> categories = <span class="hljs-keyword">await</span> _dbContext.Keywords
+            .Select(kw =&gt; kw.category)
+            .Distinct()
+            .ToListAsync();
+
+        <span class="hljs-keyword">return</span> Ok(categories);
+    }
+
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2"></a>
+</div>
+<p>[HttpGet]
+public async Task<IActionResult> ListRandomKeywordsFromCategory()
+{
+var categories = await _dbContext.Keywords
+.Select(kw =&gt; kw.category)
+.Distinct()
+.ToListAsync();</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="csharp">
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3"></a>
+</div>
+<p>return Ok(categories);
+}</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="csharp">}
+
+
+</pre>
+        </td>
+      </tr>
+    
+  </tbody>
+</table>
+
+  </div>
+</body>
+</html>

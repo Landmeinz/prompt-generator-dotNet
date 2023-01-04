@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>KeywordController.cs</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../";
+    var thisFile = "Controllers/KeywordController.cs";
+    var defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container">
+    <div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+    
+      <tr>
+        <td class="docs">
+          <h1>KeywordController.cs</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+    
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1"></a>
+</div>
+
+        </td>
+        <td class="code highlight">
+          <pre class="csharp">﻿<span class="hljs-keyword">using</span> Microsoft.AspNetCore.Mvc;
+<span class="hljs-keyword">using</span> Microsoft.EntityFrameworkCore;
+<span class="hljs-keyword">using</span> reactDotnetApi.Context;
+<span class="hljs-keyword">using</span> reactDotnetApi.Models;
+<span class="hljs-keyword">using</span> Newtonsoft.Json;
+<span class="hljs-keyword">using</span> System.Linq.Expressions;
+<span class="hljs-keyword">using</span> System.Text.Json.Nodes;
+<span class="hljs-keyword">using</span> System.ComponentModel.DataAnnotations;
+<span class="hljs-keyword">using</span> System.Runtime.InteropServices;
+<span class="hljs-keyword">using</span> System.Runtime.Serialization;
+<span class="hljs-keyword">using</span> System.Linq;
+<span class="hljs-keyword">using</span> reactDotnetApi.Interfaces;
+
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">reactDotnetApi.Controllers</span>;
+
+[<span class="hljs-meta">ApiController</span>]
+[<span class="hljs-meta">Route(<span class="hljs-meta-string">"api/[controller]"</span>)</span>]
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">KeywordController</span> : <span class="hljs-title">ControllerBase</span>
+{
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> ILogger&lt;KeywordController&gt; _logger;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> ApplicationContext _dbContext;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> IGetRandomKeyword _getRandomKeyword;
+
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">KeywordController</span>(<span class="hljs-params">ILogger&lt;KeywordController&gt; logger, ApplicationContext dbContext, IGetRandomKeyword getRandomKeyword</span>)</span>
+    {
+        _logger = logger;
+        _dbContext = dbContext;
+        _getRandomKeyword = getRandomKeyword;
+    }
+
+
+    [<span class="hljs-meta">HttpGet(<span class="hljs-meta-string">"categories"</span>)</span>]
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> Task&lt;IActionResult&gt; <span class="hljs-title">ListKeywords</span>(<span class="hljs-params"><span class="hljs-keyword">string</span>? category = <span class="hljs-literal">null</span></span>)</span>
+    {
+        List&lt;<span class="hljs-keyword">string</span>&gt; categoryList = category.Split(<span class="hljs-string">','</span>).ToList();
+        List&lt;Keyword&gt; responseList = <span class="hljs-keyword">new</span>();
+
+        <span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">var</span> cat <span class="hljs-keyword">in</span> categoryList)
+        {
+            Console.WriteLine(<span class="hljs-string">$"--- GET RANDOM KEYWORD ---"</span>);
+            <span class="hljs-keyword">var</span> randomKeyword = <span class="hljs-keyword">await</span> _getRandomKeyword.Get(cat.Trim());
+            responseList.Add(randomKeyword);
+        }
+        <span class="hljs-keyword">return</span> Ok(responseList);
+
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2"></a>
+</div>
+<p>return Ok(responseList.Count == 0 ? keywords : responseList);</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="csharp">    }
+
+    [<span class="hljs-meta">HttpGet</span>]
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> Task&lt;IActionResult&gt; <span class="hljs-title">ListAllKeywords</span>(<span class="hljs-params"></span>)</span>
+    {
+        <span class="hljs-keyword">var</span> keywords = <span class="hljs-keyword">await</span> _dbContext.Keywords.ToListAsync();
+        <span class="hljs-keyword">return</span> Ok(keywords);
+    }
+
+
+    [<span class="hljs-meta">HttpGet(<span class="hljs-meta-string">"{id}"</span>)</span>]
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> Task&lt;IActionResult&gt; <span class="hljs-title">GetKeyword</span>(<span class="hljs-params"><span class="hljs-keyword">int</span> id</span>)</span>
+    {
+        <span class="hljs-keyword">var</span> keyword = <span class="hljs-keyword">await</span> _dbContext.Keywords
+            .Where(kw =&gt; kw.id
+            .Equals(id))
+            .FirstOrDefaultAsync();
+        <span class="hljs-keyword">return</span> Ok(keyword);
+    }
+
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3"></a>
+</div>
+<p>[HttpGet(&quot;{random}&quot;)]
+public async Task<IActionResult> GetRandomKeyword([Required] List<string> categories)
+{
+List<Keyword> response = new();
+var random = new Random();
+foreach (var category in categories)
+{
+var keyword = await _dbContext.Keywords
+.Where(kw =&gt; kw.category
+.Contains(category))
+.OrderBy(kw =&gt; random.Next())
+.Take(1)
+.FirstOrDefaultAsync();
+response.Add(keyword);
+}
+return Ok(response);
+}</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="csharp">
+
+    [<span class="hljs-meta">HttpPost</span>]
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> Task&lt;IActionResult&gt; <span class="hljs-title">Create</span>(<span class="hljs-params">[FromBody] KeywordBody keywordBody</span>)</span>
+    {
+        <span class="hljs-keyword">var</span> lastKeyword = <span class="hljs-keyword">await</span> _dbContext.Keywords
+            .OrderBy(x =&gt; x.id)
+            .LastOrDefaultAsync();
+        Keyword newKeyword = <span class="hljs-keyword">new</span>()
+        {
+            id = lastKeyword.id + <span class="hljs-number">1</span>,
+            keyword = keywordBody.keyword,
+            category = keywordBody.category,
+            subCategory = keywordBody.subCategory,
+            subCategoryType = keywordBody.subCategoryType,
+            lastPing = DateTime.UtcNow,
+            genPromptCount = <span class="hljs-number">0</span>
+
+        };
+        _dbContext.Keywords.Add(newKeyword);
+        <span class="hljs-keyword">await</span> _dbContext.SaveChangesAsync();
+        <span class="hljs-keyword">return</span> Ok(newKeyword);
+    }
+
+    [<span class="hljs-meta">HttpPut(<span class="hljs-meta-string">"{id}"</span>)</span>]
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> Task&lt;IActionResult&gt; <span class="hljs-title">Update</span>(<span class="hljs-params"><span class="hljs-keyword">int</span> id, [FromBody] Keyword keyword</span>)</span>
+    {
+        <span class="hljs-keyword">var</span> existingKeyword = <span class="hljs-keyword">await</span> _dbContext.Keywords
+            .Where(kw =&gt; kw.id
+            .Equals(id))
+            .FirstOrDefaultAsync();
+
+        <span class="hljs-keyword">if</span> (existingKeyword <span class="hljs-keyword">is</span> <span class="hljs-literal">null</span>)
+            <span class="hljs-keyword">return</span> NotFound();
+
+        existingKeyword.category = keyword.category;
+
+        _dbContext.Keywords.Update(existingKeyword);
+        <span class="hljs-keyword">await</span> _dbContext.SaveChangesAsync();
+        <span class="hljs-keyword">return</span> Ok(existingKeyword);
+    }
+
+    [<span class="hljs-meta">HttpDelete(<span class="hljs-meta-string">"{id}"</span>)</span>]
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> Task&lt;IActionResult&gt; <span class="hljs-title">Delete</span>(<span class="hljs-params"><span class="hljs-keyword">int</span> id</span>)</span>
+    {
+        <span class="hljs-keyword">var</span> existingKeyword = <span class="hljs-keyword">await</span> _dbContext.Keywords
+            .Where(kw =&gt; kw.id
+            .Equals(id))
+            .FirstOrDefaultAsync();
+
+        <span class="hljs-keyword">if</span> (existingKeyword <span class="hljs-keyword">is</span> not <span class="hljs-literal">null</span>)
+        {
+            _dbContext.Keywords.Remove(existingKeyword);
+            <span class="hljs-keyword">await</span> _dbContext.SaveChangesAsync();
+        }
+        <span class="hljs-keyword">return</span> NoContent();
+    }
+
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4"></a>
+</div>
+<p>[HttpPost(Name = &quot;PostKeywordList&quot;)]
+public int CreateFromList([FromBody] List<Keyword> keywordList)
+{
+//var lastKeyword = _dbContext.Keywords.OrderBy(x =&gt; x.id).LastOrDefault();
+//Random rnd = new Random();
+foreach (var item in keywordList)
+{
+int start = 0;
+Keyword newKeyword = new()
+{
+id = start++,
+//id = rnd.Next(10000000, 99999999),
+keyword = item.keyword,
+category = item.category,
+subCategory = item.subCategory,
+subCategoryType = item.subCategoryType,
+lastPing = DateTime.UtcNow,
+genPromptCount = 0</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="csharp">
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5"></a>
+</div>
+<pre><code>   };
+   _dbContext.Keywords.AddRangeAsync(newKeyword);
+</code></pre>
+<p>}
+return _dbContext.SaveChanges();
+}</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="csharp">}
+
+
+</pre>
+        </td>
+      </tr>
+    
+  </tbody>
+</table>
+
+  </div>
+</body>
+</html>

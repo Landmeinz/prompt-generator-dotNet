@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GetRandomKeyword.cs</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="../doc-style.css" />
+  <script src="../doc-filelist.js"></script>
+  <script>
+    var relativeDir = "../";
+    var thisFile = "Services/GetRandomKeyword.cs";
+    var defaultSidebar = true;
+  </script>
+  <script src="../doc-script.js"></script>
+
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container">
+    <div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+    
+      <tr>
+        <td class="docs">
+          <h1>GetRandomKeyword.cs</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+    
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1"></a>
+</div>
+
+        </td>
+        <td class="code highlight">
+          <pre class="csharp">﻿<span class="hljs-keyword">using</span> System;
+<span class="hljs-keyword">using</span> reactDotnetApi.Context;
+<span class="hljs-keyword">using</span> reactDotnetApi.Interfaces;
+<span class="hljs-keyword">using</span> reactDotnetApi.Models;
+
+<span class="hljs-keyword">using</span> Microsoft.AspNetCore.Mvc;
+<span class="hljs-keyword">using</span> Microsoft.EntityFrameworkCore;
+<span class="hljs-keyword">using</span> Newtonsoft.Json;
+<span class="hljs-keyword">using</span> System.Linq.Expressions;
+<span class="hljs-keyword">using</span> System.Text.Json.Nodes;
+<span class="hljs-keyword">using</span> System.ComponentModel.DataAnnotations;
+<span class="hljs-keyword">using</span> System.Runtime.InteropServices;
+<span class="hljs-keyword">using</span> System.Runtime.Serialization;
+<span class="hljs-keyword">using</span> System.Linq;
+<span class="hljs-keyword">using</span> reactDotnetApi.Interfaces;
+
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">reactDotnetApi.Services</span>
+{
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">GetRandomKeyword</span> : <span class="hljs-title">IGetRandomKeyword</span>
+    {
+        <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> ApplicationContext _dbContext;
+
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">GetRandomKeyword</span>(<span class="hljs-params">ApplicationContext dbContext</span>)</span>
+        {
+            _dbContext = dbContext;
+        }
+
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> Task&lt;Keyword&gt; <span class="hljs-title">Get</span>(<span class="hljs-params"><span class="hljs-keyword">string</span> category</span>)</span>
+        {
+            Console.WriteLine(<span class="hljs-string">$"--- category: <span class="hljs-subst">{category}</span>"</span>);
+            Console.WriteLine(<span class="hljs-string">"--- hello we sent some categories to choose from"</span>);
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2"></a>
+</div>
+<p>List<Keyword> keywords = new();</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="csharp">            <span class="hljs-keyword">var</span> keywords = <span class="hljs-keyword">await</span> _dbContext.Keywords
+                .Where(kw =&gt; kw.category
+                .Equals(category))
+                .ToListAsync();
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3"></a>
+</div>
+<p>Console.WriteLine($&quot;--- keywords: {keywords}&quot;);</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="csharp">            Console.WriteLine(<span class="hljs-string">$"--- keywords count: <span class="hljs-subst">{keywords.Count}</span>"</span>);
+
+
+            <span class="hljs-keyword">var</span> random = <span class="hljs-keyword">new</span> Random();
+            Console.WriteLine(<span class="hljs-string">$"--- random: <span class="hljs-subst">{random}</span>"</span>);
+
+            <span class="hljs-keyword">int</span> index = random.Next(keywords.Count);
+            Console.WriteLine(<span class="hljs-string">$"--- index: <span class="hljs-subst">{index}</span>"</span>);
+
+            <span class="hljs-keyword">var</span> randomKeyword = keywords[index];
+            Console.WriteLine(<span class="hljs-string">$"--- randomKeyword: <span class="hljs-subst">{randomKeyword}</span>"</span>);
+            
+
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4"></a>
+</div>
+<p>Keyword randomKeyword = keywords.OrderBy(x =&gt; Guid.NewGuid()).First();
+responseList.Add(randomKeyword);</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="csharp">            <span class="hljs-keyword">return</span> randomKeyword;
+        }
+
+    }
+}
+
+
+</pre>
+        </td>
+      </tr>
+    
+  </tbody>
+</table>
+
+  </div>
+</body>
+</html>

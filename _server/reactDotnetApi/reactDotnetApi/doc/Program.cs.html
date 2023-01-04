@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Program.cs</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="stylesheet" media="all" href="doc-style.css" />
+  <script src="doc-filelist.js"></script>
+  <script>
+    var relativeDir = "";
+    var thisFile = "Program.cs";
+    var defaultSidebar = true;
+  </script>
+  <script src="doc-script.js"></script>
+
+</head>
+<body>
+  <div id="sidebar_wrapper">
+    <div id="sidebar_switch">
+      <span class="tree">Files</span>
+      <span class="headings">Headings</span>
+    </div>
+    <div id="tree"></div>
+    <div id="headings">
+
+    </div>
+  </div>
+  <div id="sidebar-toggle"></div>
+  <div id="container">
+    <div class="background highlight"></div>
+<table cellpadding="0" cellspacing="0">
+  <tbody>
+    
+      <tr>
+        <td class="docs">
+          <h1>Program.cs</h1>
+        </td>
+        <td class="code highlight"></td>
+      </tr>
+    
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-1" id="section-1"></a>
+</div>
+
+        </td>
+        <td class="code highlight">
+          <pre class="csharp">﻿<span class="hljs-keyword">using</span> Microsoft.EntityFrameworkCore;
+<span class="hljs-keyword">using</span> reactDotnetApi.Context;
+<span class="hljs-keyword">using</span> reactDotnetApi.Interfaces;
+<span class="hljs-keyword">using</span> reactDotnetApi.Services;
+
+<span class="hljs-keyword">var</span> builder = WebApplication.CreateBuilder(args);
+<span class="hljs-keyword">string</span>[] allowedCorsOrigins = builder.Configuration.GetSection(<span class="hljs-string">"Cors:AllowedOrigins"</span>).Get&lt;<span class="hljs-keyword">string</span>[]&gt;();
+
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-2" id="section-2"></a>
+</div>
+<p>Add DB services to the container //</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="csharp">builder.Services.AddDbContext&lt;ApplicationContext&gt;(options =&gt;
+    options.UseNpgsql(builder.Configuration.GetConnectionString(<span class="hljs-string">"DefaultConnection"</span>)));
+
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-3" id="section-3"></a>
+</div>
+<p>Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="csharp">builder.Services.AddControllers().AddJsonOptions(options =&gt; options.JsonSerializerOptions.PropertyNameCaseInsensitive = <span class="hljs-literal">true</span>);
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+builder.Services.AddCors(option =&gt; option
+.AddDefaultPolicy(policy =&gt; policy
+    .WithOrigins(allowedCorsOrigins)
+    .AllowAnyHeader()
+    .AllowAnyMethod()));
+
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-4" id="section-4"></a>
+</div>
+<p>Add local services to the container //
+builder.Services.AddSingleton&lt;IDisImageService, DisImageService&gt;();</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="csharp">builder.Services.AddScoped&lt;IGetRandomKeyword, GetRandomKeyword&gt;();
+
+<span class="hljs-keyword">var</span> app = builder.Build();
+</pre>
+        </td>
+      </tr>
+    
+      <tr>
+        <td class="docs">
+          <div class="pilwrap">
+  <a class="pilcrow" href="#section-5" id="section-5"></a>
+</div>
+<p>Configure the HTTP request pipeline.</p>
+
+        </td>
+        <td class="code highlight">
+          <pre class="csharp"><span class="hljs-keyword">if</span> (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+app.UseHttpsRedirection();
+app.UseAuthorization();
+app.MapControllers();
+app.UseCors();
+app.Run();
+
+</pre>
+        </td>
+      </tr>
+    
+  </tbody>
+</table>
+
+  </div>
+</body>
+</html>
